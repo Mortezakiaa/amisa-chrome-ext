@@ -6,7 +6,7 @@
   "author": "Morteza kia(amisa.me team member)",
   "action": {
     "default_icon": "amisa.png",
-    "default_popup": "index.html"
+    "default_popup": "js/index.html"
   },
   "permissions": ["activeTab", "storage", "webNavigation", "scripting"],
   "icons": {
@@ -17,10 +17,10 @@
       "run_at": "document_end",
       "all_frames": true,
       "matches": ["<all_urls>"],
-      "js": ["bundle.js"]
+      "js": ["js/index.js"]
     }
   ],
   "chrome_url_overrides": {
-    "newtab": "index.html"
+    "newtab": "js/index.html"
   }
 }

@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import './global.css'
 
-const root = document.createElement("div")
-root.className = "container"
+const root = document.getElementById('root')!
 document.body.appendChild(root)
-const rootDiv = ReactDOM.createRoot(root);
+const rootDiv = ReactDOM?.createRoot(root);
 rootDiv.render(
   <React.StrictMode>
     <App />
