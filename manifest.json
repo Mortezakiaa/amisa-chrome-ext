@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "amisa",
+  "version": "1.0.0",
+  "description": "simple calculator",
+  "author": "Morteza kia(amisa.me team member)",
+  "action": {
+    "default_icon": "amisa.png",
+    "default_popup": "index.html"
+  },
+  "permissions": ["activeTab", "storage", "webNavigation", "scripting"],
+  "icons": {
+    "48": "amisa.png"
+  },
+  "content_scripts": [
+    {
+      "run_at": "document_end",
+      "all_frames": true,
+      "matches": ["<all_urls>"],
+      "js": ["bundle.js"]
+    }
+  ],
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
+}
