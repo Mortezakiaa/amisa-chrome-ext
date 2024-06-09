@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IRootState } from "../store/store";
 
 const initialState = {
-  isOpen: true,
+  isOpen: false,
 };
 
 const DrawerSlice = createSlice({
