@@ -2,10 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TodoLists } from "../../Types/Types";
 import { IRootState } from "../store/store";
 
-type T = { items: TodoLists[] };
+type T = { todos: TodoLists[]} & TodoLists;
 
 const initialState: T = {
-  items: [],
+  todos: [],
+  id: "",
+  todo: "",
+  date:"",
+  deleteMode:false,
+  editMode:false,
+  status:'Todo'
 };
 
 const todoSlice = createSlice({
@@ -13,22 +19,26 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      state.items.push(action.payload);
+      state.todos.push(action.payload);
     },
     removeTodo: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      state.todos = state.todos.filter((item) => item.id !== action.payload);
     },
     setStatus: (state, action) => {
-      state.items = state.items.map((item) => {
+      state.todos = state.todos.map((item) => {
         if (item.id == action.payload.id) {
           item.status = action.payload.status;
         }
         return item;
       });
     },
+    updateTodo: (state, action) => {
+      state.id = action.payload.id;
+      state.todo = action.payload.todo;
+    },
   },
 });
 
 export default todoSlice.reducer;
-export const { addTodo, removeTodo, setStatus } = todoSlice.actions;
-export const DrawerSelector = (store: IRootState) => store.TodoReducer;
+export const { addTodo, removeTodo, setStatus, updateTodo } = todoSlice.actions;
+export const TodoSelector = (store: IRootState) => store.TodoReducer;

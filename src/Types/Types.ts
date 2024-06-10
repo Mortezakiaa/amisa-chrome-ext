@@ -14,7 +14,10 @@ export interface TDatePickerHandler {
 }
 
 export interface TodoLists {
-  id: string | number;
+  id: string;
   todo: string;
   status: "Done" | "Todo";
+  date: string;
+  editMode: boolean;
+  deleteMode: boolean;
 }
