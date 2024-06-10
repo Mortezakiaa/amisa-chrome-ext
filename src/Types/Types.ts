@@ -12,3 +12,9 @@ export interface TDatePickerHandler {
   dataClosed: string;
   onClick: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
+
+export interface TodoLists {
+  id: string | number;
+  todo: string;
+  status: "Done" | "Todo";
+}

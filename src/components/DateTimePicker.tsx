@@ -17,20 +17,21 @@ export default function DateTimePicker() {
     const arDate = ev.getAttribute("ardate") as string;
     const enDate = ev.getAttribute("endate") as string;
     const coord = ev.getBoundingClientRect();
-    const container = document.createElement('div')
-    const container1 = document.createElement('div')
+    const container = document.createElement("div");
+    const container1 = document.createElement("div");
     const span = document.createElement("span");
     const span1 = document.createElement("span");
     const span2 = document.createElement("span");
-    container.appendChild(span)
-    container.appendChild(container1)
-    container1.appendChild(span1)
-    container1.appendChild(span2)
-    span1.innerText = arDate
-    span2.innerText = enDate
-    container1.className = 'flex justify-between p-1 rounded-b-lg items-center gap-2 bg-[#cbd5e1] text-[#334155]'
+    container.appendChild(span);
+    container.appendChild(container1);
+    container1.appendChild(span1);
+    container1.appendChild(span2);
+    span1.innerText = arDate;
+    span2.innerText = enDate;
+    container1.className =
+      "flex justify-between p-1 rounded-b-lg items-center gap-2 bg-[#cbd5e1] text-[#334155]";
     container.className =
-      "fixed flex flex-col gap-1 p-1 bg-[#cbd5e1] text-[#334155] text-sm rounded-lg shadow-sm tooltip max-w-[160px] text-center";
+      "fixed flex z-[100000] flex-col gap-1 p-1 bg-[#cbd5e1] text-[#334155] text-sm rounded-lg shadow-sm tooltip max-w-[160px] text-center";
     span.innerText = txt;
     document.body.appendChild(container);
     container.style.top = coord.top - container.offsetHeight - 10 + "px";
@@ -62,12 +63,12 @@ export default function DateTimePicker() {
                 const arDate = new DateObject({
                   calendar: arabic,
                   locale: arabic_ar,
-                  date:date
+                  date: date,
                 });
                 const enDate = new DateObject({
                   calendar: gregorian,
                   locale: gregorian_en,
-                  date:date
+                  date: date,
                 });
                 props.className = "highlight highlight-red Closed";
                 props.dataClosed = i.name;
