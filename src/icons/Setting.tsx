@@ -1,4 +1,4 @@
-export default function SettingIcon() {
+export default function Setting() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
