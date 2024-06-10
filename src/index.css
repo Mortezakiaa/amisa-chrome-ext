@@ -4,10 +4,9 @@
 
 @font-face {
   font-family: "Vazirmatn";
-  src: url("../public/fonts/webfonts/Vazirmatn-Medium.woff2")
+  src: url("/fonts/webfonts/Vazirmatn-Medium.woff2")
       format("woff2 supports variations"),
-    url("../public/fonts/webfonts/Vazirmatn-Medium.woff2")
-      format("woff2-variations");
+    url("/fonts/webfonts/Vazirmatn-Medium.woff2") format("woff2-variations");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -19,4 +18,15 @@ body {
 
 * {
   font-family: Vazirmatn !important;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #cbd5e1 transparent transparent transparent;
 }

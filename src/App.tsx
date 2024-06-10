@@ -15,7 +15,7 @@ function App() {
   const { color } = useSelector(BgColorSelector);
   return (
     <>
-      <div className={`py-4 h-screen w-screen px-10 bg-[${color}]`}>
+      <div className={`py-4 w-full px-10 bg-[${color}]`}>
         <Header />
         <Main />
       </div>

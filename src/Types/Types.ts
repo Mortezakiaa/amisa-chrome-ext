@@ -4,6 +4,8 @@ export interface ClosedDayOfYear {
   name: string;
 }
 export interface TDatePickerHandler {
+  arDate: string;
+  enDate: string;
   className: string;
   onMouseEnter: (e: React.MouseEvent<HTMLDivElement>) => void;
   onMouseLeave: () => void;
