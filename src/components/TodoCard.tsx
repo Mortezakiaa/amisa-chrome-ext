@@ -25,6 +25,7 @@ export default function TodoCard({
           />
           <div className="truncate group-hover:overflow-visible">{text}</div>
         </div>
+        <div className="text-sm">{todo.date}</div>
         {todo.editMode ? (
           <div className=" text-red-700 flex items-center gap-2">
             <span className="block sm:inline">مطمئنی میخای پاکش کنی؟</span>
