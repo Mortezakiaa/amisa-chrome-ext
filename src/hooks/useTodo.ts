@@ -4,6 +4,7 @@ import { GuidGenerator } from "../utils/GuidGenerator";
 import {
   addTodo,
   removeTodo,
+  setStatus,
   setToEditMode,
   TodoSelector,
   updateTodo,
@@ -42,7 +43,11 @@ export default function useTodo() {
   };
 
   const setToEdit = (id: string, edit: boolean) => {
-    dispatch(setToEditMode({id, edit}));
+    dispatch(setToEditMode({ id, edit }));
+  };
+
+  const handleStatus = (id: string, check: boolean) => {
+    dispatch(setStatus({ id, status: check ? "Done" : "Todo" }));
   };
 
   return {
@@ -53,5 +58,6 @@ export default function useTodo() {
     todos,
     handleEdit,
     setToEdit,
+    handleStatus,
   };
 }

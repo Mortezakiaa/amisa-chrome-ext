@@ -10,12 +10,14 @@ export default function TodoList() {
     todos,
     handleEdit,
     setToEdit,
+    handleStatus,
   } = useTodo();
   return (
     <div className="flex flex-col justify-between h-screen">
       <div className="flex flex-col gap-2 p-2">
         {todos?.map((i) => (
           <TodoCard
+            changeStatus={handleStatus}
             todo={i}
             setToEdit={setToEdit}
             DeleteTodo={DeleteTodo}

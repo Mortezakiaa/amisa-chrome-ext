@@ -26,4 +26,5 @@ export interface TTodoCard {
   editTodo: (id: string) => void;
   setToEdit: (id: string, edit: boolean) => void;
   todo: TodoLists;
+  changeStatus: (id: string, check: boolean) => void;
 }
