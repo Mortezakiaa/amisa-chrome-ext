@@ -7,18 +7,17 @@ export default function TodoList() {
     setTodo,
     todo,
     DeleteTodo,
-    setShowAlert,
-    showAlert,
     todos,
     handleEdit,
+    setToEdit,
   } = useTodo();
   return (
     <div className="flex flex-col justify-between h-screen">
       <div className="flex flex-col gap-2 p-2">
         {todos?.map((i) => (
           <TodoCard
-            setShowAlert={setShowAlert}
-            showAlert={showAlert}
+            todo={i}
+            setToEdit={setToEdit}
             DeleteTodo={DeleteTodo}
             text={i.todo}
             id={i.id}

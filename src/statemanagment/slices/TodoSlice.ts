@@ -34,9 +34,18 @@ const todoSlice = createSlice({
         return item;
       });
     },
+    setToEditMode: (state, action) => {
+      state.todos = state.todos.map((item) => {
+        if (item.id == action.payload.id) {
+          item.editMode = action.payload.edit;
+        }
+        return item;
+      });
+    },
   },
 });
 
 export default todoSlice.reducer;
-export const { addTodo, removeTodo, setStatus, updateTodo } = todoSlice.actions;
+export const { addTodo, removeTodo, setStatus, updateTodo, setToEditMode } =
+  todoSlice.actions;
 export const TodoSelector = (store: IRootState) => store.TodoReducer;

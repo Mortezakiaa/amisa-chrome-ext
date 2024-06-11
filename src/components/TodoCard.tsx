@@ -8,9 +8,9 @@ export default function TodoCard({
   text,
   id,
   DeleteTodo,
-  showAlert,
-  setShowAlert,
-  editTodo
+  editTodo,
+  setToEdit,
+  todo
 }: TTodoCard) {
   return (
     <div className="flex justify-between p-1 group bg-white border border-slate-500 rounded-lg shadow hover:bg-gray-100">
@@ -25,7 +25,7 @@ export default function TodoCard({
             {text}
           </p>
         </div>
-        {showAlert ? (
+        {todo.editMode ? (
           <div className=" text-red-700 flex items-center gap-2">
             <span className="block sm:inline">مطمئنی میخای پاکش کنی؟</span>
             <span className="flex items-center gap-1">
@@ -34,7 +34,7 @@ export default function TodoCard({
               </button>
               <button
                 onClick={() => {
-                  setShowAlert(false);
+                  setToEdit(id,false)
                 }}
               >
                 <DisLike />
@@ -44,12 +44,16 @@ export default function TodoCard({
         ) : null}
       </div>
       <div className="group-hover:items-center group-hover:gap-[1px] hidden group-hover:flex transition-all duration-1000">
-        <button onClick={() => {editTodo(id)}}>
+        <button
+          onClick={() => {
+            editTodo(id);
+          }}
+        >
           <Edit />
         </button>
         <button
           onClick={() => {
-            setShowAlert(true);
+            setToEdit(id,true)
           }}
         >
           <Delete />

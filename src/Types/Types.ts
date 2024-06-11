@@ -17,12 +17,13 @@ export interface TodoLists {
   todo: string;
   status: "Done" | "Todo";
   date: string;
+  editMode: boolean;
 }
 export interface TTodoCard {
   text: string;
   id: string;
   DeleteTodo: (id: string) => void;
-  showAlert: boolean;
-  setShowAlert: React.Dispatch<React.SetStateAction<boolean>>;
   editTodo: (id: string) => void;
+  setToEdit: (id: string, edit: boolean) => void;
+  todo: TodoLists;
 }
