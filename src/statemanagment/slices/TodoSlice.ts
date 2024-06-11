@@ -2,16 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TodoLists } from "../../Types/Types";
 import { IRootState } from "../store/store";
 
-type T = { todos: TodoLists[]} & TodoLists;
+type T = { todos: TodoLists[] };
 
 const initialState: T = {
   todos: [],
-  id: "",
-  todo: "",
-  date:"",
-  deleteMode:false,
-  editMode:false,
-  status:'Todo'
 };
 
 const todoSlice = createSlice({
@@ -33,8 +27,12 @@ const todoSlice = createSlice({
       });
     },
     updateTodo: (state, action) => {
-      state.id = action.payload.id;
-      state.todo = action.payload.todo;
+      state.todos = state.todos.map((item) => {
+        if (item.id == action.payload.id) {
+          item = Object.assign({}, action.payload.todo);
+        }
+        return item;
+      });
     },
   },
 });

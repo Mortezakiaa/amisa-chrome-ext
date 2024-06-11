@@ -8,8 +8,8 @@ export default function Main() {
       <div className="h-screen bg-white rounded-lg">
         <TodoList/>
       </div>
-      <div className="bg-[#aaa] h-screen"></div>
-      <div className="flex flex-col bg-slate-400 h-screen">
+      <div className="h-screen"></div>
+      <div className="flex flex-col h-screen">
         <CalenderFormatDropDown />
         <DateTimePicker />
       </div>

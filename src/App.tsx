@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
     const cx = JSON.parse(JSON.stringify(localStorage.getItem("bgColor")));
     dispatch(setBgColor(cx));
-  }, []);
+  }, [dispatch]);
 
   const { color } = useSelector(BgColorSelector);
   return (

@@ -1,30 +1,29 @@
-import { useState } from "react";
 import TodoCard from "./TodoCard";
-import { GuidGenerator } from "../utils/GuidGenerator";
-import { useDispatch, useSelector } from "react-redux";
-import { addTodo, TodoSelector } from "../statemanagment/slices/TodoSlice";
-import { TodoLists } from "../Types/Types";
+import useTodo from "../hooks/useTodo";
 
 export default function TodoList() {
-  const { todos } = useSelector(TodoSelector);
-  const [todo, setTodo] = useState<TodoLists>({
-    id: GuidGenerator(),
-    status: "Todo",
-    todo: "",
-    date: "",
-    deleteMode:false,
-    editMode:false
-  });
-  const dispatch = useDispatch();
-  const handleAddTask = () => {
-    dispatch(addTodo(todo));
-    setTodo({ ...todo, date: "", todo: "", id: GuidGenerator() });
-  };
+  const {
+    handleAddTask,
+    setTodo,
+    todo,
+    DeleteTodo,
+    setShowAlert,
+    showAlert,
+    todos,
+    handleEdit,
+  } = useTodo();
   return (
     <div className="flex flex-col justify-between h-screen">
       <div className="flex flex-col gap-2 p-2">
-        {todos?.map((i) =>(
-            <TodoCard text={i.todo} id={i.id} />
+        {todos?.map((i) => (
+          <TodoCard
+            setShowAlert={setShowAlert}
+            showAlert={showAlert}
+            DeleteTodo={DeleteTodo}
+            text={i.todo}
+            id={i.id}
+            editTodo={handleEdit}
+          />
         ))}
       </div>
       <div>
