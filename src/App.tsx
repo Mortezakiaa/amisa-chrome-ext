@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import { BgColorSelector, setBgColor } from "./statemanagment/slices/AppBg";
 import Main from "./components/Main";
 import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ function App() {
         <Main />
       </div>
       <Drawer />
+      <Toaster />
     </>
   );
 }

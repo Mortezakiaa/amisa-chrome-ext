@@ -1,5 +1,9 @@
 import TodoCard from "./TodoCard";
 import useTodo from "../hooks/useTodo";
+import DatePicker from "react-multi-date-picker";
+import persian from "react-date-object/calendars/persian";
+import persian_fa from "react-date-object/locales/persian_fa";
+import Tooltip from "../utils/Tooltip";
 
 export default function TodoList() {
   const {
@@ -47,13 +51,32 @@ export default function TodoList() {
                 placeholder="نوشتن تسک جدید"
               />
             </div>
-            <div className="w-full md:w-full flex items-start">
+            <div className="w-full md:w-full flex gap-1 items-start">
               <button
                 onClick={handleAddTask}
-                className="bg-white text-sm hover:bg-gray-100 text-gray-800 font-semibold p-1 border border-gray-400 rounded shadow"
+                className="bg-white text-xs hover:bg-gray-100 text-gray-800 font-semibold p-1 border border-gray-400 rounded shadow"
               >
                 اضافه کردن
               </button>
+              <DatePicker
+                value={todo.date}
+                onChange={(e) => {
+                  setTodo({...todo , date:e!.format()})
+                }}
+                mapDays={({ date }) => {
+                  const tooltip = new Tooltip(date);
+                  return tooltip.props;
+                }}
+                render={
+                  <button className="bg-white text-xs hover:bg-gray-100 text-gray-800 font-semibold p-1 border border-gray-400 rounded shadow">
+                    {todo.date != "" ? todo.date : "اضافه کردن تاریخ"}
+                  </button>
+                }
+                weekDays={["ش", "ی", "د", "س", "چ", "پ", "ج"]}
+                calendar={persian}
+                locale={persian_fa}
+                calendarPosition="bottom-left"
+              />
             </div>
           </div>
         </div>

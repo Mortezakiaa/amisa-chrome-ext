@@ -10,6 +10,7 @@ import {
   updateTodo,
 } from "../statemanagment/slices/TodoSlice";
 import { useDispatch, useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 export default function useTodo() {
   const [todo, setTodo] = useState<TodoLists>({
@@ -23,6 +24,10 @@ export default function useTodo() {
   const { todos } = useSelector(TodoSelector);
 
   const handleAddTask = () => {
+    if (todo.todo == "") {
+      toast.error("مقدار تسک نمی تواند خالی باشد");
+      return;
+    }
     const isTodoExist = todos.some((i) => i.id === todo.id);
     if (isTodoExist) {
       dispatch(updateTodo({ id: todo.id, todo: todo }));
