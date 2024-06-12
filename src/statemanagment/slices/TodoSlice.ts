@@ -37,7 +37,7 @@ const todoSlice = createSlice({
     setToEditMode: (state, action) => {
       state.todos = state.todos.map((item) => {
         if (item.id == action.payload.id) {
-          item.editMode = action.payload.edit;
+          item.deleteMode = action.payload.edit;
         }
         return item;
       });

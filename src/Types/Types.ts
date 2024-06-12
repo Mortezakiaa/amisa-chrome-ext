@@ -17,7 +17,7 @@ export interface TodoLists {
   todo: string;
   status: "Done" | "Todo";
   date: string;
-  editMode: boolean;
+  deleteMode: boolean;
 }
 export interface TTodoCard {
   text: string;

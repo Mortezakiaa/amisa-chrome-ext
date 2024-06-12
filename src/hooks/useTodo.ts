@@ -18,7 +18,7 @@ export default function useTodo() {
     status: "Todo",
     todo: "",
     date: "",
-    editMode: false,
+    deleteMode: false,
   });
   const dispatch = useDispatch();
   const { todos } = useSelector(TodoSelector);
