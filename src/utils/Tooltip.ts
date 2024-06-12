@@ -11,16 +11,32 @@ export default class Tooltip {
   get props() {
     return this.#props;
   }
-  #date: DateObject;
-  #isWeekend: boolean;
+  #date: DateObject = {} as DateObject;
+  #isWeekend: boolean = false;
 
   constructor(date: DateObject) {
-    this.#date = date;
-    this.#isWeekend = date.weekDay.index === 6;
-    if (this.#isWeekend) {
-      this.#props.className = "highlight highlight-red";
+    const clrName = date.calendar.name;
+    switch (clrName) {
+      case "persian": {
+        this.#date = date;
+        this.#isWeekend = date.weekDay.index === 6;
+        this.#isWeekend && (this.#props.className = "highlight highlight-red");
+        this.#setClosedDays(ClosedDay);
+        break;
+      }
+      case "arabic": {
+        this.#date = date;
+        this.#isWeekend = date.weekDay.index === 6;
+        this.#isWeekend && (this.#props.className = "highlight highlight-red");
+        break;
+      }
+      case "gregorian": {
+        this.#date = date;
+        this.#isWeekend = (date.weekDay.index === 6 || date.weekDay.index === 0);
+        this.#isWeekend && (this.#props.className = "highlight highlight-red");
+        break;
+      }
     }
-    this.#setClosedDays(ClosedDay);
   }
 
   #createTooltipAndShow = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -52,7 +68,7 @@ export default class Tooltip {
   };
 
   #removeTooltip = () => {
-    document.querySelectorAll("[role=dateTooltip]")?.forEach((i) => i.remove())
+    document.querySelectorAll("[role=dateTooltip]")?.forEach((i) => i.remove());
   };
 
   #setClosedDays = (list: { name: string; day: number; month: number }[]) => {
@@ -82,6 +98,6 @@ export default class Tooltip {
   };
 
   #addEvent = () => {
-    this.#removeTooltip()
+    this.#removeTooltip();
   };
 }
