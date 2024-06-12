@@ -5,7 +5,8 @@ import "react-multi-date-picker/styles/colors/green.css";
 import Tooltip from "../utils/Tooltip";
 import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header";
 import Settings from "react-multi-date-picker/plugins/settings";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useCalendar from "../hooks/useCalendar";
 
 export default function DateTimePicker() {
   const [props, setProps] = useState({
@@ -14,12 +15,26 @@ export default function DateTimePicker() {
     calendarPosition: "bottom-right",
     multiple: true,
   });
+  const { importCalendarLocale, importCalendar, Header } = useCalendar();
+
+  useEffect(() => {
+    if (
+      typeof props.calendar !== "string" ||
+      typeof props.locale !== "string"
+    ) {
+      importCalendarLocale(props.locale.name);
+      importCalendar(props.calendar.name);
+    }
+  }, [props]);
+
   return (
     <>
       <Calendar
         onPropsChange={setProps}
         plugins={[
           <DatePickerHeader
+            locale={Header.locale}
+            calendar={Header.calendar}
             position="top"
             size="small"
             style={{ backgroundColor: "steelblue" }}
