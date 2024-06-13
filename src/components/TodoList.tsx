@@ -17,7 +17,7 @@ export default function TodoList() {
     handleStatus,
   } = useTodo();
   return (
-    <div className="flex flex-col justify-between h-screen">
+    <div className="flex flex-col justify-between h-screen ">
       <div className="flex flex-col gap-2 p-2">
         {todos?.map((i) => (
           <TodoCard
