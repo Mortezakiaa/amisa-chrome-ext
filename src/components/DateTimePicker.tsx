@@ -5,8 +5,9 @@ import "react-multi-date-picker/styles/colors/green.css";
 import Tooltip from "../utils/Tooltip";
 import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header";
 import Settings from "react-multi-date-picker/plugins/settings";
-import {  useState } from "react";
+import { useState } from "react";
 import useCalendar from "../hooks/useCalendar";
+import DateEvents from "./DateEvents";
 
 export default function DateTimePicker() {
   const [props, setProps] = useState({
@@ -35,6 +36,7 @@ export default function DateTimePicker() {
             locales={["en", "fa", "ar"]}
             disabledList={["other", "mode"]}
           />,
+          <DateEvents position="left" />,
         ]}
         mapDays={({ date }) => {
           const tooltip = new Tooltip(date);

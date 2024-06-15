@@ -5,7 +5,15 @@ import DisLike from "../icons/DisLike";
 import { TTodoCard } from "../Types/Types";
 import Calendar from "../icons/Calendar";
 
-export default function TodoCard({ text, id, DeleteTodo, editTodo, setToEdit, changeStatus, todo }: TTodoCard) {
+export default function TodoCard({
+  text,
+  id,
+  DeleteTodo,
+  editTodo,
+  setToEdit,
+  changeStatus,
+  todo,
+}: TTodoCard) {
   return (
     <div className="flex flex-wrap justify-between p-1 group bg-white border border-slate-500 rounded-lg shadow hover:bg-gray-100">
       <div className="flex flex-col w-4/5">
@@ -16,7 +24,15 @@ export default function TodoCard({ text, id, DeleteTodo, editTodo, setToEdit, ch
             checked={todo.status === "Done"}
             className="w-4 h-4 mt-[0.5px] text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
           />
-          <div className={text.match(" ") ? "truncate group-hover:text-wrap" : "truncate whitespace-break-spaces group-hover:break-all"}>{text}</div>
+          <div
+            className={
+              text.match(" ")
+                ? "truncate group-hover:text-wrap"
+                : "truncate whitespace-break-spaces group-hover:break-all"
+            }
+          >
+            {text}
+          </div>
         </div>
         <div className="text-sm flex items-center gap-1">
           {todo.date && <Calendar />}
@@ -27,13 +43,15 @@ export default function TodoCard({ text, id, DeleteTodo, editTodo, setToEdit, ch
         <button
           onClick={() => {
             editTodo(id);
-          }}>
+          }}
+        >
           <Edit />
         </button>
         <button
           onClick={() => {
             setToEdit(id, true);
-          }}>
+          }}
+        >
           <Delete />
         </button>
       </div>
@@ -47,7 +65,8 @@ export default function TodoCard({ text, id, DeleteTodo, editTodo, setToEdit, ch
             <button
               onClick={() => {
                 setToEdit(id, false);
-              }}>
+              }}
+            >
               <DisLike />
             </button>
           </span>
