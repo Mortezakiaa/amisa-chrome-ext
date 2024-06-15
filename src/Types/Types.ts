@@ -34,3 +34,13 @@ export interface TEvent {
   title: string;
   dateTime: string;
 }
+
+export type TReminderTime =
+  | "در همان لحظه"
+  | "10 دقیقه قبل"
+  | "30 دقیقه قبل"
+  | "1 ساعت قبل"
+  | "2 ساعت قبل"
+  | "1 روز قبل"
+  | "1 هفته قبل"
+  | "مقدار دلخواه";
