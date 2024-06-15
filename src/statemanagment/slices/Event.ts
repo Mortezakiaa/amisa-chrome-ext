@@ -1,14 +1,34 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IRootState } from "../store/store";
+import { TEvent } from "../../Types/Types";
 
-const initialState = {};
+type T = { items: TEvent[] };
+
+const initialState: T = {
+  items: [],
+};
 
 const eventSlice = createSlice({
-  name: "event",
+  name: "Event",
   initialState,
-  reducers: {},
+  reducers: {
+    addEvent: (state, action) => {
+      state.items.push(action.payload);
+    },
+    removeEvent: (state, action) => {
+      state.items = state.items.filter((item) => item.id !== action.payload);
+    },
+    updateEvent: (state, action) => {
+      state.items = state.items.map((item) => {
+        if (item.id === action.payload.id) {
+          item.title = action.payload.title;
+        }
+        return item;
+      });
+    },
+  },
 });
 
 export default eventSlice.reducer;
-export const {} = eventSlice.actions;
+export const { addEvent, removeEvent, updateEvent } = eventSlice.actions;
 export const EventSelector = (store: IRootState) => store.EventReducer;

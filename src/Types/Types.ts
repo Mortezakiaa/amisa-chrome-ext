@@ -28,3 +28,9 @@ export interface TTodoCard {
   todo: TodoLists;
   changeStatus: (id: string, check: boolean) => void;
 }
+
+export interface TEvent {
+  id: string;
+  title: string;
+  dateTime: string;
+}
