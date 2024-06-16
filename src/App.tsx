@@ -6,6 +6,7 @@ import Main from "./components/Main";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import Modal from "./components/Modal";
+import AddEventModal from "./components/AddEventModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
       <Drawer />
       <Toaster />
       <Modal />
+      <AddEventModal/>
     </>
   );
 }

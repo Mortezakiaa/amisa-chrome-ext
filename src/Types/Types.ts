@@ -28,3 +28,21 @@ export interface TTodoCard {
   todo: TodoLists;
   changeStatus: (id: string, check: boolean) => void;
 }
+
+export interface TEvent {
+  id: string;
+  eventTitle: string;
+  date: string;
+  time: string;
+  reminderTime: string;
+}
+
+export type TReminderTime =
+  | "در همان لحظه"
+  | "10 دقیقه قبل"
+  | "30 دقیقه قبل"
+  | "1 ساعت قبل"
+  | "2 ساعت قبل"
+  | "1 روز قبل"
+  | "1 هفته قبل"
+  | "مقدار دلخواه";

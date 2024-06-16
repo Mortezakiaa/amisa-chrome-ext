@@ -6,6 +6,9 @@ import Tooltip from "../utils/Tooltip";
 import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header";
 import Settings from "react-multi-date-picker/plugins/settings";
 import { useState } from "react";
+import useCalendar from "../hooks/useCalendar";
+import DateEvents from "./DateEvents";
+import weekends from "react-multi-date-picker/plugins/highlight_weekends"
 
 export default function DateTimePicker() {
   const [props, setProps] = useState({
@@ -14,12 +17,16 @@ export default function DateTimePicker() {
     calendarPosition: "bottom-right",
     multiple: true,
   });
+  const { Header } = useCalendar(props);
+
   return (
     <>
       <Calendar
         onPropsChange={setProps}
         plugins={[
           <DatePickerHeader
+            locale={Header.locale}
+            calendar={Header.calendar}
             position="top"
             size="small"
             style={{ backgroundColor: "steelblue" }}
@@ -28,25 +35,14 @@ export default function DateTimePicker() {
             position="bottom"
             calendars={["gregorian", "persian", "arabic"]}
             locales={["en", "fa", "ar"]}
-            disabledList={["other" , "mode"]}
+            disabledList={["other", "mode"]}
           />,
+          <DateEvents position="left" />,
+          weekends()
         ]}
         mapDays={({ date }) => {
           const tooltip = new Tooltip(date);
-          if(typeof props.calendar === 'object'){
-            const clr = props.calendar.name as any
-            if(clr === "persian"){
-              return tooltip.props
-            }else{
-              const isWeekend = date.weekDay.index === 6;
-              const p = {} as any
-              isWeekend && (p.className = "highlight highlight-red")
-              return p 
-            }
-          }else{
-            return tooltip.props;
-          }
-          
+          return tooltip.props;
         }}
         // weekDays={["ش", "ی", "د", "س", "چ", "پ", "ج"]}
         calendar={persian}
