@@ -11,7 +11,7 @@ export default function useAddEvent() {
     date: "",
     time: "",
     eventTitle: "",
-    reminderTime: "",
+    reminderTime: "atmoment",
   };
   const [event, setEvent] = useState<TEvent>(initialState);
   const [showModal, setShowModal] = useState(true);

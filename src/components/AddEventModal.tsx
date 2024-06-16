@@ -70,8 +70,14 @@ export default function AddEventModal() {
                 calendarPosition="bottom-left"
               />
               <form className="max-w-sm mx-auto">
-                <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                  <option value="moment">در همان لحظه</option>
+                <select
+                  value={event.reminderTime}
+                  onChange={(e) => {
+                    setEvent({ ...event, reminderTime: e.target.value });
+                  }}
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  <option value="atmoment">در همان لحظه</option>
                   <option value="10min">10 دقیقه قبل</option>
                   <option value="30min">30 دقیقه قبل</option>
                   <option value="1hour">1 ساعت قبل</option>
@@ -84,6 +90,7 @@ export default function AddEventModal() {
             </div>
             <div className="flex items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600">
               <button
+              onClick={eventHandler}
                 type="button"
                 className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
