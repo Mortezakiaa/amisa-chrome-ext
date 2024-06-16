@@ -35,6 +35,7 @@ export interface TEvent {
   date: string;
   time: string;
   reminderTime: string;
+  showModal: boolean;
 }
 
 export type TReminderTime =

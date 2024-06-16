@@ -4,6 +4,7 @@ import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import Tooltip from "../utils/Tooltip";
+import weekends from "react-multi-date-picker/plugins/highlight_weekends";
 
 export default function TodoList() {
   const {
@@ -59,9 +60,10 @@ export default function TodoList() {
                 اضافه کردن
               </button>
               <DatePicker
+                plugins={[weekends()]}
                 value={todo.date}
                 onChange={(e) => {
-                  setTodo({...todo , date:e!.format()})
+                  setTodo({ ...todo, date: e!.format() });
                 }}
                 mapDays={({ date }) => {
                   const tooltip = new Tooltip(date);

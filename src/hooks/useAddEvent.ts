@@ -12,14 +12,14 @@ export default function useAddEvent() {
     time: "",
     eventTitle: "",
     reminderTime: "atmoment",
+    showModal: false,
   };
   const [event, setEvent] = useState<TEvent>(initialState);
-  const [showModal, setShowModal] = useState(true);
 
   const eventHandler = () => {
     dispatch(addEvent(event));
     setEvent(initialState);
   };
 
-  return { event, setEvent, eventHandler, showModal, setShowModal };
+  return { event, setEvent, eventHandler };
 }

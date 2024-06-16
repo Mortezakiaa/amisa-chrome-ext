@@ -2,13 +2,13 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { Calendar } from "react-multi-date-picker";
 import "react-multi-date-picker/styles/colors/green.css";
-import Tooltip from "../utils/Tooltip";
+import { MainPageTooltip } from "../utils/Tooltip";
 import DatePickerHeader from "react-multi-date-picker/plugins/date_picker_header";
 import Settings from "react-multi-date-picker/plugins/settings";
 import { useState } from "react";
 import useCalendar from "../hooks/useCalendar";
 import DateEvents from "./DateEvents";
-import weekends from "react-multi-date-picker/plugins/highlight_weekends"
+import weekends from "react-multi-date-picker/plugins/highlight_weekends";
 
 export default function DateTimePicker() {
   const [props, setProps] = useState({
@@ -17,7 +17,7 @@ export default function DateTimePicker() {
     calendarPosition: "bottom-right",
     multiple: true,
   });
-  const { Header } = useCalendar(props);
+  const { Header , addEvent } = useCalendar(props);
 
   return (
     <>
@@ -38,10 +38,10 @@ export default function DateTimePicker() {
             disabledList={["other", "mode"]}
           />,
           <DateEvents position="left" />,
-          weekends()
+          weekends(),
         ]}
         mapDays={({ date }) => {
-          const tooltip = new Tooltip(date);
+          const tooltip = new MainPageTooltip({date , addEvent});
           return tooltip.props;
         }}
         // weekDays={["ش", "ی", "د", "س", "چ", "پ", "ج"]}
