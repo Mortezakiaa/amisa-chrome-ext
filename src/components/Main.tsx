@@ -3,7 +3,7 @@ import TodoList from "./TodoList";
 
 export default function Main() {
   return (
-    <div className="grid gap-2 xs:grid-cols-1 md:grid-cols-4">
+    <div className="grid gap-2 sm:grid-cols-1 md:grid-cols-4">
       <div className="h-screen bg-white rounded-lg col-span-1">
         <TodoList/>
       </div>
