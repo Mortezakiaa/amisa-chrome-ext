@@ -12,8 +12,11 @@ import arabic_fa from "react-date-object/locales/arabic_fa";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
 import gregorian_ar from "react-date-object/locales/gregorian_ar";
+import { useDispatch } from "react-redux";
+import { modalHandler } from "../statemanagment/slices/Event";
 
 export default function useCalendar(props) {
+  const dispatch = useDispatch();
   const [Header, setHeaderLocale] = useState<CalendarProps>({
     locale: persian_fa,
     calendar: persian,
@@ -27,6 +30,7 @@ export default function useCalendar(props) {
       importCalendar(props.calendar.name);
       importCalendarLocale(props.locale.name);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   const importCalendarLocale = (Case: string) => {
@@ -87,9 +91,9 @@ export default function useCalendar(props) {
     }
   };
 
-  const addEvent = ()=>{
-    alert('s')
-  }
+  const addEvent = () => {
+    dispatch(modalHandler(true));
+  };
 
-  return { Header , addEvent };
+  return { Header, addEvent };
 }

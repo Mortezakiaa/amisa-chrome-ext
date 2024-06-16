@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IRootState } from "../store/store";
 import { TEvent } from "../../Types/Types";
 
-type T = { items: TEvent[] };
+type T = { items: TEvent[]; isOpenModal: boolean };
 
 const initialState: T = {
   items: [],
+  isOpenModal: false,
 };
 
 const eventSlice = createSlice({
@@ -27,12 +28,7 @@ const eventSlice = createSlice({
       });
     },
     modalHandler: (state, action) => {
-      state.items = state.items.map((item) => {
-        if (item.id === action.payload.id) {
-          item.showModal = action.payload.showModal;
-        }
-        return item;
-      });
+      state.isOpenModal = action.payload;
     },
   },
 });
