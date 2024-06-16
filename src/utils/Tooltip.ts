@@ -98,15 +98,15 @@ export default class Tooltip {
 }
 
 export class MainPageTooltip extends Tooltip {
-  #obj: { date: DateObject; addEvent: () => void };
-  constructor(obj: { date: DateObject; addEvent: () => void }) {
+  #obj: { date: DateObject; addEvent: (date: DateObject) => void };
+  constructor(obj: { date: DateObject; addEvent: (date: DateObject) => void }) {
     super(obj.date);
-    this.#obj = obj
+    this.#obj = obj;
     this.props.onClick = this.#addEvent;
   }
 
   #addEvent = () => {
     this.removeTooltip();
-    this.#obj.addEvent()
+    this.#obj.addEvent(this.#obj.date);
   };
 }

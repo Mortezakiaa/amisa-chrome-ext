@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TEvent } from "../Types/Types";
 import { GuidGenerator } from "../utils/GuidGenerator";
-import { useDispatch } from "react-redux";
-import { addEvent } from "../statemanagment/slices/Event";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addEvent,
+  EventSelector,
+  modalHandler,
+} from "../statemanagment/slices/Event";
+import toast from "react-hot-toast";
 
 export default function useAddEvent() {
   const dispatch = useDispatch();
@@ -14,9 +19,15 @@ export default function useAddEvent() {
     reminderTime: "atmoment",
   };
   const [event, setEvent] = useState<TEvent>(initialState);
+  const { date, time } = useSelector(EventSelector);
+  useEffect(() => {
+    setEvent({ ...event, date, time });
+  }, []);
 
   const eventHandler = () => {
+    if (!event.eventTitle) return toast.error("رویداد نمی تواند خالی باشد");
     dispatch(addEvent(event));
+    dispatch(modalHandler(false));
     setEvent(initialState);
   };
 
