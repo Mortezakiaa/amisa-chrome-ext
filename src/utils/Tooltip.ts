@@ -6,16 +6,7 @@ import gregorian_en from "react-date-object/locales/gregorian_en";
 import arabic_ar from "react-date-object/locales/arabic_ar";
 import ClosedDay from "../mockData/ClosedDaysOfYear.json";
 
-export interface TTooltip {
-  props: TDatePickerHandler;
-  date: DateObject;
-  createTooltipAndShow: (e: React.MouseEvent<HTMLDivElement>) => void;
-  removeTooltip: () => void;
-  setClosedDays: (list: { name: string; day: number; month: number }[]) => void;
-  addEvent: () => void;
-}
-
-export default class Tooltip implements TTooltip {
+export default class Tooltip {
   #props: TDatePickerHandler = {} as TDatePickerHandler;
   get props() {
     return this.#props;
@@ -107,12 +98,15 @@ export default class Tooltip implements TTooltip {
 }
 
 export class MainPageTooltip extends Tooltip {
-  constructor(obj: { date: DateObject; addEvent: () => void }) {
+  #obj: { date: DateObject; addEvent: (date: DateObject) => void };
+  constructor(obj: { date: DateObject; addEvent: (date: DateObject) => void }) {
     super(obj.date);
+    this.#obj = obj;
+    this.props.onClick = this.#addEvent;
   }
 
-  addEvent = () => {
+  #addEvent = () => {
     this.removeTooltip();
-    alert("s");
+    this.#obj.addEvent(this.#obj.date);
   };
 }

@@ -17,12 +17,13 @@ export default function DateTimePicker() {
     calendarPosition: "bottom-right",
     multiple: true,
   });
-  const { Header , addEvent } = useCalendar(props);
+  const { Header, addEvent } = useCalendar(props);
 
   return (
-    <div >
-      <Calendar 
+    <div>
+      <Calendar
         onPropsChange={setProps}
+        format="YYYY/MM/DD HH:mm:ss"
         plugins={[
           <DatePickerHeader
             locale={Header.locale}
@@ -41,7 +42,7 @@ export default function DateTimePicker() {
           weekends(),
         ]}
         mapDays={({ date }) => {
-          const tooltip = new MainPageTooltip({date , addEvent});
+          const tooltip = new MainPageTooltip({ date, addEvent });
           return tooltip.props;
         }}
         // weekDays={["ش", "ی", "د", "س", "چ", "پ", "ج"]}
