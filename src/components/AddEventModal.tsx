@@ -22,7 +22,7 @@ export default function AddEventModal() {
                   اضافه کردن رویداد
                 </h3>
                 <button
-                  onClick={() => {
+                  onClick={() => { 
                     dispatch(modalHandler(false));
                   }}
                   type="button"
