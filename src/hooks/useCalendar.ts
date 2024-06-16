@@ -87,5 +87,9 @@ export default function useCalendar(props) {
     }
   };
 
-  return { Header };
+  const addEvent = ()=>{
+    alert('s')
+  }
+
+  return { Header , addEvent };
 }

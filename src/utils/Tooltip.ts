@@ -6,7 +6,16 @@ import gregorian_en from "react-date-object/locales/gregorian_en";
 import arabic_ar from "react-date-object/locales/arabic_ar";
 import ClosedDay from "../mockData/ClosedDaysOfYear.json";
 
-export default class Tooltip {
+export interface TTooltip {
+  props: TDatePickerHandler;
+  date: DateObject;
+  createTooltipAndShow: (e: React.MouseEvent<HTMLDivElement>) => void;
+  removeTooltip: () => void;
+  setClosedDays: (list: { name: string; day: number; month: number }[]) => void;
+  addEvent: () => void;
+}
+
+export default class Tooltip implements TTooltip {
   #props: TDatePickerHandler = {} as TDatePickerHandler;
   get props() {
     return this.#props;
@@ -18,7 +27,7 @@ export default class Tooltip {
     switch (clrName) {
       case "persian": {
         this.#date = date;
-        this.#setClosedDays(ClosedDay);
+        this.setClosedDays(ClosedDay);
         break;
       }
       case "arabic": {
@@ -32,7 +41,7 @@ export default class Tooltip {
     }
   }
 
-  #createTooltipAndShow = (e: React.MouseEvent<HTMLDivElement>) => {
+  protected createTooltipAndShow = (e: React.MouseEvent<HTMLDivElement>) => {
     const ev = e.target as HTMLElement;
     const txt = ev.getAttribute("dataClosed") as string;
     const arDate = ev.getAttribute("ardate") as string;
@@ -60,11 +69,13 @@ export default class Tooltip {
     container.role = "dateTooltip";
   };
 
-  #removeTooltip = () => {
+  protected removeTooltip = () => {
     document.querySelectorAll("[role=dateTooltip]")?.forEach((i) => i.remove());
   };
 
-  #setClosedDays = (list: { name: string; day: number; month: number }[]) => {
+  protected setClosedDays = (
+    list: { name: string; day: number; month: number }[]
+  ) => {
     list?.forEach((i: ClosedDayOfYear) => {
       if (i.month == this.#date.month.number) {
         if (i.day == this.#date.day) {
@@ -82,15 +93,26 @@ export default class Tooltip {
           this.#props.dataClosed = i.name;
           this.#props.arDate = arDate.format();
           this.#props.enDate = enDate.format();
-          this.#props.onMouseEnter = this.#createTooltipAndShow;
-          this.#props.onMouseLeave = this.#removeTooltip;
-          this.#props.onClick = this.#addEvent;
+          this.#props.onMouseEnter = this.createTooltipAndShow;
+          this.#props.onMouseLeave = this.removeTooltip;
+          this.#props.onClick = this.addEvent;
         }
       }
     });
   };
 
-  #addEvent = () => {
-    this.#removeTooltip();
+  protected addEvent = () => {
+    this.removeTooltip();
+  };
+}
+
+export class MainPageTooltip extends Tooltip {
+  constructor(obj: { date: DateObject; addEvent: () => void }) {
+    super(obj.date);
+  }
+
+  addEvent = () => {
+    this.removeTooltip();
+    alert("s");
   };
 }

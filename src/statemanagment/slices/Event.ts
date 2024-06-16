@@ -21,7 +21,15 @@ const eventSlice = createSlice({
     updateEvent: (state, action) => {
       state.items = state.items.map((item) => {
         if (item.id === action.payload.id) {
-          item.title = action.payload.title;
+          item.eventTitle = action.payload.title;
+        }
+        return item;
+      });
+    },
+    modalHandler: (state, action) => {
+      state.items = state.items.map((item) => {
+        if (item.id === action.payload.id) {
+          item.showModal = action.payload.showModal;
         }
         return item;
       });
@@ -30,5 +38,6 @@ const eventSlice = createSlice({
 });
 
 export default eventSlice.reducer;
-export const { addEvent, removeEvent, updateEvent } = eventSlice.actions;
+export const { addEvent, removeEvent, updateEvent, modalHandler } =
+  eventSlice.actions;
 export const EventSelector = (store: IRootState) => store.EventReducer;
