@@ -12,28 +12,21 @@ export default class Tooltip {
     return this.#props;
   }
   #date: DateObject = {} as DateObject;
-  #isWeekend: boolean = false;
 
   constructor(date: DateObject) {
     const clrName = date.calendar.name;
     switch (clrName) {
       case "persian": {
         this.#date = date;
-        this.#isWeekend = date.weekDay.index === 6;
-        this.#isWeekend && (this.#props.className = "highlight highlight-red");
         this.#setClosedDays(ClosedDay);
         break;
       }
       case "arabic": {
         this.#date = date;
-        this.#isWeekend = date.weekDay.index === 6;
-        this.#isWeekend && (this.#props.className = "highlight highlight-red");
         break;
       }
       case "gregorian": {
         this.#date = date;
-        this.#isWeekend = (date.weekDay.index === 6 || date.weekDay.index === 0);
-        this.#isWeekend && (this.#props.className = "highlight highlight-red");
         break;
       }
     }

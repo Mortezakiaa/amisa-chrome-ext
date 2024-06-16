@@ -8,6 +8,7 @@ import Settings from "react-multi-date-picker/plugins/settings";
 import { useState } from "react";
 import useCalendar from "../hooks/useCalendar";
 import DateEvents from "./DateEvents";
+import weekends from "react-multi-date-picker/plugins/highlight_weekends"
 
 export default function DateTimePicker() {
   const [props, setProps] = useState({
@@ -37,6 +38,7 @@ export default function DateTimePicker() {
             disabledList={["other", "mode"]}
           />,
           <DateEvents position="left" />,
+          weekends()
         ]}
         mapDays={({ date }) => {
           const tooltip = new Tooltip(date);

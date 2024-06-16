@@ -31,8 +31,10 @@ export interface TTodoCard {
 
 export interface TEvent {
   id: string;
-  title: string;
-  dateTime: string;
+  eventTitle: string;
+  date: string;
+  time: string;
+  reminderTime: string;
 }
 
 export type TReminderTime =
