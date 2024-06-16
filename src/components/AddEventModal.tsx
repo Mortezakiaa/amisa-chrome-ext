@@ -8,8 +8,7 @@ import InputIcon from "react-multi-date-picker/components/input_icon";
 import useAddEvent from "../hooks/useAddEvent";
 
 export default function AddEventModal() {
-  const { event, eventHandler, setEvent, setShowModal, showModal } =
-    useAddEvent();
+  const { event, eventHandler, setEvent, setShowModal, showModal } = useAddEvent();
   return (
     <>
       <button
@@ -17,32 +16,27 @@ export default function AddEventModal() {
           setShowModal((prev) => !prev);
         }}
         className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
+        type="button">
         Toggle modal
       </button>
       <div
         className={`${
           showModal ? "block" : "hidden"
-        } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full`}
-      >
-        <div className="relative p-4 w-full max-w-2xl max-h-full">
+        } overflow-y-auto overflow-x-hidden fixed flex top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full bg-[rgba(0,0,0,0.4)] h-[108vh]`}>
+        <div className="relative p-4 w-full max-w-2xl max-h-full z-51 ">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="flex items-center justify-between p-2 border-b rounded-t dark:border-gray-600">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                اضافه کردن رویداد
-              </h3>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">اضافه کردن رویداد</h3>
               <button
                 onClick={() => {
                   setShowModal(false);
                 }}
                 type="button"
-                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              >
+                className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
                 <Close />
               </button>
             </div>
-            <div className="p-4 flex flex-wrap gap-2">
+            <div className="p-4 flex flex-wrap gap-2 ">
               <input
                 onChange={(e) => {
                   setEvent({ ...event, eventTitle: e.target.value });
@@ -75,8 +69,7 @@ export default function AddEventModal() {
                   onChange={(e) => {
                     setEvent({ ...event, reminderTime: e.target.value });
                   }}
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                >
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                   <option value="atmoment">در همان لحظه</option>
                   <option value="10min">10 دقیقه قبل</option>
                   <option value="30min">30 دقیقه قبل</option>
@@ -88,12 +81,11 @@ export default function AddEventModal() {
                 </select>
               </form>
             </div>
-            <div className="flex items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+            <div className="flex items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600 ">
               <button
-              onClick={eventHandler}
+                onClick={eventHandler}
                 type="button"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 اضافه کردن
               </button>
               <button
@@ -101,8 +93,7 @@ export default function AddEventModal() {
                   setShowModal(false);
                 }}
                 type="button"
-                className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-              >
+                className="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                 لغو
               </button>
             </div>

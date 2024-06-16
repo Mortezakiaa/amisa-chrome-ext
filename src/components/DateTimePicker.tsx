@@ -20,8 +20,8 @@ export default function DateTimePicker() {
   const { Header } = useCalendar(props);
 
   return (
-    <>
-      <Calendar
+    <div >
+      <Calendar 
         onPropsChange={setProps}
         plugins={[
           <DatePickerHeader
@@ -48,6 +48,6 @@ export default function DateTimePicker() {
         calendar={persian}
         locale={persian_fa}
       />
-    </>
+    </div>
   );
 }
