@@ -19,7 +19,9 @@ export default function useAddEvent() {
     reminderTime: "atmoment",
   };
   const [event, setEvent] = useState<TEvent>(initialState);
-  const { date, time } = useSelector(EventSelector);
+  const {
+    item: { date, time },
+  } = useSelector(EventSelector);
   useEffect(() => {
     setEvent({ ...event, date, time });
   }, []);
@@ -27,8 +29,8 @@ export default function useAddEvent() {
   const eventHandler = () => {
     if (!event.eventTitle) return toast.error("رویداد نمی تواند خالی باشد");
     dispatch(addEvent(event));
-    dispatch(modalHandler(false));
     setEvent(initialState);
+    dispatch(modalHandler(false));
   };
 
   return { event, setEvent, eventHandler };

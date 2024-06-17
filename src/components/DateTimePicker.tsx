@@ -23,7 +23,7 @@ export default function DateTimePicker() {
     <div>
       <Calendar
         onPropsChange={setProps}
-        format="YYYY/MM/DD HH:mm:ss"
+        format="YYYY/MM/DD HH:mm"
         plugins={[
           <DatePickerHeader
             locale={Header.locale}
@@ -38,7 +38,7 @@ export default function DateTimePicker() {
             locales={["en", "fa", "ar"]}
             disabledList={["other", "mode"]}
           />,
-          <DateEvents position="left" />,
+          <DateEvents position="left"/>,
           weekends(),
         ]}
         mapDays={({ date }) => {
