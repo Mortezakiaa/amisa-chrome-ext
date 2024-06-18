@@ -61,3 +61,10 @@ export interface ButtonProps {
   onclick: (e?: any) => void;
   txt: string;
 }
+
+export interface TTooltip {
+  createTooltipAndShow: (e: React.MouseEvent<HTMLDivElement>) => void;
+  removeTooltip: () => void;
+  setClosedDays: (list: { name: string; day: number; month: number }[]) => void;
+  addEvent: () => void;
+}

@@ -1,12 +1,12 @@
 import { DateObject } from "react-multi-date-picker";
-import { ClosedDayOfYear, TDatePickerHandler } from "../Types/Types";
+import { ClosedDayOfYear, TDatePickerHandler, TTooltip } from "../Types/Types";
 import gregorian from "react-date-object/calendars/gregorian";
 import arabic from "react-date-object/calendars/arabic";
 import gregorian_en from "react-date-object/locales/gregorian_en";
 import arabic_ar from "react-date-object/locales/arabic_ar";
 import ClosedDay from "../mockData/ClosedDaysOfYear.json";
 
-export default class Tooltip {
+export default class Tooltip implements TTooltip {
   #props: TDatePickerHandler = {} as TDatePickerHandler;
   get props() {
     return this.#props;
@@ -32,7 +32,7 @@ export default class Tooltip {
     }
   }
 
-  protected createTooltipAndShow = (e: React.MouseEvent<HTMLDivElement>) => {
+  private createTooltipAndShow = (e: React.MouseEvent<HTMLDivElement>) => {
     const ev = e.target as HTMLElement;
     const txt = ev.getAttribute("dataClosed") as string;
     const arDate = ev.getAttribute("ardate") as string;
@@ -64,7 +64,7 @@ export default class Tooltip {
     document.querySelectorAll("[role=dateTooltip]")?.forEach((i) => i.remove());
   };
 
-  protected setClosedDays = (
+  private setClosedDays = (
     list: { name: string; day: number; month: number }[]
   ) => {
     list?.forEach((i: ClosedDayOfYear) => {
@@ -82,8 +82,8 @@ export default class Tooltip {
           });
           this.#props.className = "highlight highlight-red Closed";
           this.#props.dataClosed = i.name;
-          this.#props.arDate = arDate.format();
-          this.#props.enDate = enDate.format();
+          this.#props.arDate = arDate.format().split(" ")[0];
+          this.#props.enDate = enDate.format().split(" ")[0];
           this.#props.onMouseEnter = this.createTooltipAndShow;
           this.#props.onMouseLeave = this.removeTooltip;
           this.#props.onClick = this.addEvent;
@@ -92,7 +92,7 @@ export default class Tooltip {
     });
   };
 
-  protected addEvent = () => {
+  private addEvent = () => {
     this.removeTooltip();
   };
 }
