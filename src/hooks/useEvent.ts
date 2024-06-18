@@ -9,7 +9,7 @@ import {
 } from "../statemanagment/slices/Event";
 import toast from "react-hot-toast";
 
-export default function useAddEvent() {
+export default function useEvent() {
   const dispatch = useDispatch();
   const initialState: TEvent = {
     id: GuidGenerator(),

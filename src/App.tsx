@@ -5,7 +5,7 @@ import { BgColorSelector, setBgColor } from "./statemanagment/slices/AppBg";
 import Main from "./components/Main";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import AddEventModal from "./components/AddEventModal";
+import EventModal from "./components/EventModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ function App() {
       </div>
       <Drawer />
       <Toaster />
-      <AddEventModal/>
+      <EventModal/>
     </>
   );
 }

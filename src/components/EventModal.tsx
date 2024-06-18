@@ -1,10 +1,10 @@
 import Close from "../icons/Close";
-import useAddEvent from "../hooks/useAddEvent";
+import useEvent from "../hooks/useEvent";
 import { useDispatch, useSelector } from "react-redux";
 import { EventSelector, modalHandler } from "../statemanagment/slices/Event";
 
 export default function AddEventModal() {
-  const { event, eventHandler, setEvent } = useAddEvent();
+  const { event, eventHandler, setEvent } = useEvent();
   const dispatch = useDispatch();
   const { isOpenModal } = useSelector(EventSelector);
   return (
