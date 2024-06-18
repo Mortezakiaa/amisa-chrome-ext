@@ -4,9 +4,11 @@ export default function Input({
   placeholder,
   onchange,
   onkeydown,
+  value,
 }: InputProps) {
   return (
     <input
+      value={value}
       onChange={onchange}
       onKeyDown={onkeydown}
       type="text"

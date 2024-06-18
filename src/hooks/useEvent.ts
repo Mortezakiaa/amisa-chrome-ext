@@ -3,7 +3,10 @@ import {
   addEvent,
   EventSelector,
   modalHandler,
-  setOnEditMode,
+  removeEvent,
+  resetItem,
+  setEditMode,
+  updateEvent,
 } from "../statemanagment/slices/Event";
 import toast from "react-hot-toast";
 
@@ -16,11 +19,22 @@ export default function useEvent() {
     if (!editOrDeleteMode) {
       dispatch(addEvent(item));
       dispatch(modalHandler(false));
-      dispatch(setOnEditMode({ mode: false, item: {} }));
-    }else{
-      
+      dispatch(setEditMode(false));
+      dispatch(resetItem());
+    } else {
+      dispatch(updateEvent());
+      dispatch(resetItem());
+      dispatch(modalHandler(false));
+      dispatch(setEditMode(false));
     }
   };
 
-  return { item, eventHandler };
+  const deleteHandler = (id: string) => {
+    dispatch(removeEvent(id));
+    dispatch(modalHandler(false));
+    dispatch(setEditMode(false));
+    dispatch(resetItem());
+  };
+
+  return { item, eventHandler, deleteHandler };
 }

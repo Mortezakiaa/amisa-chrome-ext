@@ -1,19 +1,29 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { TEvent } from "../Types/Types";
-import { EventSelector, modalHandler, setOnEditMode } from "../statemanagment/slices/Event";
+import {
+  modalHandler,
+  setEditMode,
+  setEdit,
+} from "../statemanagment/slices/Event";
 
-
-export default function EventCard({ eventTitle , id}: Pick<TEvent , 'id' | 'eventTitle'>) {
-    const dispatch = useDispatch()
-    const {items} = useSelector(EventSelector)
-    const showEvent = (id:string)=>{
-        const d = items.filter((i) => i.id === id)
-        dispatch(setOnEditMode({item:d[0] , mode:true}))
-        dispatch(modalHandler(true))
-    }
+export default function EventCard({
+  eventTitle,
+  id,
+}: Pick<TEvent, "id" | "eventTitle">) {
+  const dispatch = useDispatch();
+  const showEvent = (id: string) => {
+    dispatch(setEdit(id));
+    dispatch(setEditMode(true));
+    dispatch(modalHandler(true));
+  };
   return (
     <div className="flex items-center gap-2 w-full p-1 text-xs text-blue-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800">
-      <button onClick={() => {showEvent(id)}} className="self-start">
+      <button
+        onClick={() => {
+          showEvent(id);
+        }}
+        className="self-start"
+      >
         <svg
           className="w-4 h-4"
           aria-hidden="true"

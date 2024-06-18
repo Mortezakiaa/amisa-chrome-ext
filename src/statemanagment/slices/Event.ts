@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IRootState } from "../store/store";
 import { TEvent } from "../../Types/Types";
+import { GuidGenerator } from "../../utils/GuidGenerator";
 
 type T = {
   items: TEvent[];
@@ -15,7 +16,7 @@ const initialState: T = {
     date: "",
     eventTitle: "",
     id: "",
-    reminderTime: "",
+    reminderTime: "atmoment",
     time: "",
   },
   isOpenModal: false,
@@ -32,8 +33,16 @@ const eventSlice = createSlice({
     removeEvent: (state, action) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
-    updateEvent: (state, action) => {
-       
+    updateEvent: (state) => {
+      state.items = state.items.map((i) => {
+        if (i.id === state.item.id) {
+          i = Object.assign({}, state.item);
+        }
+        return i;
+      });
+    },
+    setEditMode: (state, action) => {
+      state.editOrDeleteMode = action.payload;
     },
     modalHandler: (state, action) => {
       state.isOpenModal = action.payload;
@@ -42,11 +51,7 @@ const eventSlice = createSlice({
       state.item.date = action.payload.date;
       state.item.time = action.payload.time;
     },
-    setOnEditMode: (state, action) => {
-      state.editOrDeleteMode = action.payload.mode;
-      state.item = action.payload.item;
-    },
-    editHandler: (state, action) => {
+    setEdit: (state, action) => {
       const newItem = state.items.filter((i) => i.id === action.payload);
       state.item = newItem[0];
     },
@@ -65,6 +70,15 @@ const eventSlice = createSlice({
     setEventTime: (state, action) => {
       state.item.time = action.payload;
     },
+    resetItem: (state) => {
+      state.item = {
+        date: "",
+        eventTitle: "",
+        id: GuidGenerator(),
+        reminderTime: "atmoment",
+        time: "",
+      };
+    },
   },
 });
 
@@ -75,12 +89,13 @@ export const {
   updateEvent,
   modalHandler,
   setEventDateTime,
-  setOnEditMode,
   setEventTitle,
-  editHandler,
+  setEdit,
   setEventDate,
   setEventId,
   setEventReminderTime,
   setEventTime,
+  setEditMode,
+  resetItem,
 } = eventSlice.actions;
 export const EventSelector = (store: IRootState) => store.EventReducer;
