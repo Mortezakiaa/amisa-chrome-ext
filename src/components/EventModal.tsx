@@ -6,7 +6,11 @@ import { EventSelector, modalHandler } from "../statemanagment/slices/Event";
 export default function AddEventModal() {
   const { event, eventHandler, setEvent } = useEvent();
   const dispatch = useDispatch();
-  const { isOpenModal } = useSelector(EventSelector);
+  const {
+    isOpenModal,
+    // item: { date, eventTitle, id, reminderTime, time },
+    editOrDeleteMode,
+  } = useSelector(EventSelector);
   return (
     <>
       <div
@@ -19,10 +23,10 @@ export default function AddEventModal() {
             <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
               <div className="flex items-center justify-between p-2 border-b rounded-t dark:border-gray-600">
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  اضافه کردن رویداد
+                  {editOrDeleteMode ? "ویرایش رویداد" : "اضافه کردن رویداد"}
                 </h3>
                 <button
-                  onClick={() => { 
+                  onClick={() => {
                     dispatch(modalHandler(false));
                   }}
                   type="button"
@@ -58,14 +62,24 @@ export default function AddEventModal() {
                   </select>
                 </form>
               </div>
-              <div className="flex items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600 ">
+              <div className="flex gap-2 items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600 ">
                 <button
                   onClick={eventHandler}
                   type="button"
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
                 >
-                  اضافه کردن
+                  {editOrDeleteMode ? "ویرایش" : "اضافه کردن"}
                 </button>
+                {editOrDeleteMode ? (
+                  <button
+                    type="button"
+                    className="text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                  >
+                    حذف کردن
+                  </button>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

@@ -47,9 +47,21 @@ const eventSlice = createSlice({
       state.item.date = action.payload.date;
       state.item.time = action.payload.time;
     },
-    editHandler: (state, action) => {
-      state.item = action.payload;
+    setOnEditMode: (state, action) => {
+      state.editOrDeleteMode = action.payload.mode;
+      state.item = action.payload.item;
     },
+    editHandler: (state, action) => {
+      const newItem = state.items.filter((i) => i.id === action.payload);
+      state.item = newItem[0];
+    },
+    setItems:(state,action)=>{
+      state.item.date = action.payload.date
+      state.item.time = action.payload.time
+      state.item.eventTitle = action.payload.eventTitle
+      state.item.id = action.payload.id
+      state.item.reminderTime = action.payload.reminderTime
+    }
   },
 });
 
@@ -60,6 +72,6 @@ export const {
   updateEvent,
   modalHandler,
   setEventDateTime,
-  editHandler,
+  setOnEditMode,
 } = eventSlice.actions;
 export const EventSelector = (store: IRootState) => store.EventReducer;

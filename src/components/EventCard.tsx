@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { TEvent } from "../Types/Types";
-import { editHandler, EventSelector, modalHandler } from "../statemanagment/slices/Event";
+import { EventSelector, modalHandler, setOnEditMode } from "../statemanagment/slices/Event";
 
 
-export default function EventCard({ eventTitle , id}: Partial<TEvent>) {
+export default function EventCard({ eventTitle , id}: Pick<TEvent , 'id' | 'eventTitle'>) {
     const dispatch = useDispatch()
     const {items} = useSelector(EventSelector)
     const showEvent = (id:string)=>{
         const d = items.filter((i) => i.id === id)
-        dispatch(editHandler(d[0]))
+        dispatch(setOnEditMode({item:d[0] , mode:true}))
         dispatch(modalHandler(true))
     }
   return (
