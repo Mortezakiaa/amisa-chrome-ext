@@ -33,12 +33,7 @@ const eventSlice = createSlice({
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
     updateEvent: (state, action) => {
-      state.items = state.items.map((item) => {
-        if (item.id === action.payload.id) {
-          item.eventTitle = action.payload.title;
-        }
-        return item;
-      });
+       
     },
     modalHandler: (state, action) => {
       state.isOpenModal = action.payload;

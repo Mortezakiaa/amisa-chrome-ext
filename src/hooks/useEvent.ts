@@ -17,7 +17,8 @@ export default function useEvent() {
       dispatch(addEvent(item));
       dispatch(modalHandler(false));
       dispatch(setOnEditMode({ mode: false, item: {} }));
-      return;
+    }else{
+      
     }
   };
 
