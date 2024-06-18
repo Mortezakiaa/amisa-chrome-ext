@@ -6,7 +6,6 @@ import Main from "./components/Main";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import EventModal from "./components/EventModal";
-import Button from "./components/ConfirmationButton";
 
 function App() {
   const dispatch = useDispatch();
