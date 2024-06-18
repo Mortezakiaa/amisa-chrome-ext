@@ -33,12 +33,7 @@ const eventSlice = createSlice({
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
     updateEvent: (state, action) => {
-      state.items = state.items.map((item) => {
-        if (item.id === action.payload.id) {
-          item.eventTitle = action.payload.title;
-        }
-        return item;
-      });
+       
     },
     modalHandler: (state, action) => {
       state.isOpenModal = action.payload;
@@ -55,13 +50,21 @@ const eventSlice = createSlice({
       const newItem = state.items.filter((i) => i.id === action.payload);
       state.item = newItem[0];
     },
-    setItems:(state,action)=>{
-      state.item.date = action.payload.date
-      state.item.time = action.payload.time
-      state.item.eventTitle = action.payload.eventTitle
-      state.item.id = action.payload.id
-      state.item.reminderTime = action.payload.reminderTime
-    }
+    setEventTitle: (state, action) => {
+      state.item.eventTitle = action.payload;
+    },
+    setEventDate: (state, action) => {
+      state.item.date = action.payload;
+    },
+    setEventId: (state, action) => {
+      state.item.id = action.payload;
+    },
+    setEventReminderTime: (state, action) => {
+      state.item.reminderTime = action.payload;
+    },
+    setEventTime: (state, action) => {
+      state.item.time = action.payload;
+    },
   },
 });
 
@@ -73,5 +76,11 @@ export const {
   modalHandler,
   setEventDateTime,
   setOnEditMode,
+  setEventTitle,
+  editHandler,
+  setEventDate,
+  setEventId,
+  setEventReminderTime,
+  setEventTime,
 } = eventSlice.actions;
 export const EventSelector = (store: IRootState) => store.EventReducer;
