@@ -1,10 +1,17 @@
 import Close from "../icons/Close";
 import useEvent from "../hooks/useEvent";
 import { useDispatch, useSelector } from "react-redux";
-import { EventSelector, modalHandler } from "../statemanagment/slices/Event";
+import {
+  EventSelector,
+  modalHandler,
+  setEventReminderTime,
+  setEventTitle,
+  setOnEditMode,
+} from "../statemanagment/slices/Event";
+import Input from "./Input";
 
 export default function AddEventModal() {
-  const { event, eventHandler, setEvent } = useEvent();
+  const { item, eventHandler } = useEvent();
   const dispatch = useDispatch();
   const {
     isOpenModal,
@@ -28,6 +35,7 @@ export default function AddEventModal() {
                 <button
                   onClick={() => {
                     dispatch(modalHandler(false));
+                    dispatch(setOnEditMode({ item: {}, mode: false }));
                   }}
                   type="button"
                   className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -36,18 +44,17 @@ export default function AddEventModal() {
                 </button>
               </div>
               <div className="p-4 flex flex-wrap gap-2 ">
-                <input
-                  onChange={(e) => {
-                    setEvent({ ...event, eventTitle: e.target.value });
-                  }}
-                  className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                <Input
                   placeholder="نوشتن رویداد"
+                  onchange={(e) => {
+                    dispatch(setEventTitle(e.target.value));
+                  }}
                 />
                 <form className="max-w-sm mx-auto">
                   <select
-                    value={event.reminderTime}
+                    value={item.reminderTime}
                     onChange={(e) => {
-                      setEvent({ ...event, reminderTime: e.target.value });
+                      dispatch(setEventReminderTime(e.target.value));
                     }}
                     className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
