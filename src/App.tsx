@@ -6,8 +6,6 @@ import Main from "./components/Main";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import EventModal from "./components/EventModal";
-import Input from "./components/Input";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -22,7 +20,6 @@ function App() {
       <div className={`py-4 w-full px-10 bg-[${color}]`}>
         <Header />
         <Main />
-        <Input />
       </div>
       <Drawer />
       <Toaster />

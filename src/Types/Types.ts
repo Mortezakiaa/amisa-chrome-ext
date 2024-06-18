@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 export interface ClosedDayOfYear {
   day: number;
   month: number;
@@ -46,3 +48,8 @@ export type TReminderTime =
   | "1 روز قبل"
   | "1 هفته قبل"
   | "مقدار دلخواه";
+
+export interface InputProps {
+  placeholder: string;
+  onchange: (event: ChangeEvent<HTMLInputElement>) => void;
+}

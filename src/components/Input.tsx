@@ -1,11 +1,12 @@
+import { InputProps } from "../Types/Types";
 
-
-function Input() {
+export default function Input({ placeholder, onchange }: InputProps) {
   return (
-    <div>
-      <input type="text" color="blue" placeholder="متن مورد نظر خود را بنویسید..." className="my-5 w-1/4 p-2 rounded-lg   focus:outline-none border-2 border-slate-400  " />
-    </div>
+    <input
+      onChange={onchange}
+      type="text"
+      placeholder={placeholder}
+      className="my-5 w-1/4 p-2 rounded-lg   focus:outline-none border-2 border-slate-400  "
+    />
   );
 }
-
-export default Input;
