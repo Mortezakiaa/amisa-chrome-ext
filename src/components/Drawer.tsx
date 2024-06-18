@@ -1,32 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
-import { DrawerSelector, setOpen } from "../statemanagment/slices/DrawerSlice";
-import { setBgColor } from "../statemanagment/slices/AppBg";
+import {
+  globalStateSelector,
+  setBgColor,
+  setOpen,
+} from "../statemanagment/slices/globalState";
 import Close from "../icons/Close";
 
 export default function Drawer() {
-  const { isOpen } = useSelector(DrawerSelector);
+  const { isDrawerOpen } = useSelector(globalStateSelector);
   const dispatch = useDispatch();
   const toggleDrawer = () => {
-    dispatch(setOpen(!isOpen));
+    dispatch(setOpen(!isDrawerOpen));
   };
   return (
     <div className="flex">
       <div
         className={`fixed top-0 right-0 w-full h-full bg-black z-[1000] bg-opacity-50 transition-opacity duration-300 ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+          isDrawerOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={toggleDrawer}
       ></div>
       <div
         className={`fixed top-0 right-0 w-64 h-full bg-white z-[1000] shadow transition-transform duration-300 ${
-          isOpen ? "transform translate-x-0" : "transform translate-x-full"
+          isDrawerOpen
+            ? "transform translate-x-0"
+            : "transform translate-x-full"
         }`}
       >
         <div className="p-4 flex flex-col">
           <button
             className="self-end"
             onClick={() => {
-              dispatch(setOpen(!isOpen));
+              dispatch(setOpen(!isDrawerOpen));
             }}
           >
             <Close />

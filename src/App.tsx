@@ -1,7 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import Drawer from "./components/Drawer";
 import Header from "./components/Header";
-import { BgColorSelector, setBgColor } from "./statemanagment/slices/AppBg";
+import {
+  globalStateSelector,
+  setBgColor,
+} from "./statemanagment/slices/globalState";
 import Main from "./components/Main";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
@@ -14,7 +17,7 @@ function App() {
     dispatch(setBgColor(cx));
   }, [dispatch]);
 
-  const { color } = useSelector(BgColorSelector);
+  const { color } = useSelector(globalStateSelector);
   return (
     <>
       <div className={`py-4 w-full px-10 bg-[${color}]`}>

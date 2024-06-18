@@ -19,6 +19,7 @@ import {
   setEventId,
 } from "../statemanagment/slices/Event";
 import { GuidGenerator } from "../utils/GuidGenerator";
+import { setDateTimeFormat } from "../statemanagment/slices/globalState";
 
 export default function useCalendar(props) {
   const dispatch = useDispatch();
@@ -37,6 +38,12 @@ export default function useCalendar(props) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
+
+  useEffect(() => {
+    dispatch(
+      setDateTimeFormat({ calendar: Header.calendar, locale: Header.locale })
+    );
+  }, [Header]);
 
   const importCalendarLocale = (Case: string) => {
     switch (Case) {
