@@ -41,7 +41,7 @@ export default function AddEventModal() {
                   <Close />
                 </button>
               </div>
-              <div className="p-4 flex flex-wrap gap-2 ">
+              <div className="p-4 flex flex-col w-full gap-2 ">
                 <Input
                   value={item.eventTitle}
                   placeholder="نوشتن رویداد"
@@ -49,7 +49,12 @@ export default function AddEventModal() {
                     dispatch(setEventTitle(e.target.value));
                   }}
                 />
-                <form className="max-w-sm mx-auto">
+                <form className="">
+                  <label
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    یادآوری رویداد
+                  </label>
                   <select
                     value={item.reminderTime}
                     onChange={(e) => {
