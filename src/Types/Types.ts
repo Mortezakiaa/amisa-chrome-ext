@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, KeyboardEvent } from "react";
 
 export interface ClosedDayOfYear {
   day: number;
@@ -51,5 +51,6 @@ export type TReminderTime =
 
 export interface InputProps {
   placeholder: string;
-  onchange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onchange: (e: ChangeEvent<HTMLInputElement>) => void;
+  onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 }
