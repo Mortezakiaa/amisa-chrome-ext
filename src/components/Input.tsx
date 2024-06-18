@@ -11,7 +11,7 @@ export default function Input({
       onKeyDown={onkeydown}
       type="text"
       placeholder={placeholder}
-      className="p-2 rounded-lg w-full focus:outline-none border-2 border-slate-400  "
+      className="p-2 rounded-lg w-full focus:outline-none border-2 border-slate-400"
     />
   );
 }
