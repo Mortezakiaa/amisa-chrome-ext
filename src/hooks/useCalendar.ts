@@ -13,7 +13,12 @@ import gregorian_en from "react-date-object/locales/gregorian_en";
 import gregorian_fa from "react-date-object/locales/gregorian_fa";
 import gregorian_ar from "react-date-object/locales/gregorian_ar";
 import { useDispatch } from "react-redux";
-import { modalHandler, setEventDateTime } from "../statemanagment/slices/Event";
+import {
+  modalHandler,
+  setEventDateTime,
+  setEventId,
+} from "../statemanagment/slices/Event";
+import { GuidGenerator } from "../utils/GuidGenerator";
 
 export default function useCalendar(props) {
   const dispatch = useDispatch();
@@ -91,9 +96,10 @@ export default function useCalendar(props) {
     }
   };
 
-  const addEvent = (date:DateObject) => {
-    const dateTime = date.format().split(" ")
-    dispatch(setEventDateTime({date:dateTime[0] , time:dateTime[1]}))
+  const addEvent = (date: DateObject) => {
+    dispatch(setEventId(GuidGenerator()));
+    const dateTime = date.format().split(" ");
+    dispatch(setEventDateTime({ date: dateTime[0], time: dateTime[1] }));
     dispatch(modalHandler(true));
   };
 

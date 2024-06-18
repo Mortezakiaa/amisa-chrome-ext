@@ -53,4 +53,5 @@ export interface InputProps {
   placeholder: string;
   onchange: (e: ChangeEvent<HTMLInputElement>) => void;
   onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
+  value: string;
 }
