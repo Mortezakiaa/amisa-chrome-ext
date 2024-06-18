@@ -55,3 +55,9 @@ export interface InputProps {
   onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   value: string;
 }
+
+export interface ButtonProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onclick: (e?: any) => void;
+  txt: string;
+}
