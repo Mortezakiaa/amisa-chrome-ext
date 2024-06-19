@@ -1,64 +1,54 @@
 import { CalendarProps, DateObject } from "react-multi-date-picker";
+import type { Locale } from "react-date-object";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 import { TEvent } from "../Types/Types";
 import { getCurrentTime } from "./utils";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-type selectedFormat = Pick<CalendarProps, "calendar" | "locale">;
+type selectedFormat = {
+  locale: Omit<CalendarProps, "leapsLength">;
+  calendar: Locale;
+};
+
+type TEventDateReminder = {
+  date: string;
+  locale: CalendarProps;
+  calendar: CalendarProps;
+  format: string;
+};
 
 export class EventReminder {
-  #NowDate: DateObject;
+  #today: string;
   #DatePickerFormat: selectedFormat;
   #EventList: TEvent[];
 
   constructor(DatePickerFormat: selectedFormat, items: TEvent[]) {
-    this.#NowDate = new DateObject();
     this.#DatePickerFormat = DatePickerFormat;
+    this.#today = new DateObject({
+      locale: persian_fa,
+      calendar: persian,
+    }).format();
     this.#EventList = items;
   }
 
-  EventTimeReminder = (time: string) => {
+  isEventTime = (time: string): boolean => {
     const Now = getCurrentTime();
-    if (Now === time) {
-      // remind time
-    }
+    return Now === time ? true : false;
   };
 
-  EventDateReminder = (date: string) => {
-    const Now = new DateObject({
-      calendar: persian,
-      locale: persian_fa,
-      format: "YYYY/MM/DD",
-    }).format();
-    if (Now === date) {
-      // remind date
-    }
+  todayEvents = (): TEvent[] => {
+    return this.#EventList?.filter((i) => i.date === this.#today);
+  };
+
+  timeDiffrenceInMillis = (time1: string, time2: string) => {
+    const [hours1, minutes1] = time1.split(":").map(Number);
+    const [hours2, minutes2] = time2.split(":").map(Number);
+    const date1 = new Date(0, 0, 0, hours1, minutes1);
+    const date2 = new Date(0, 0, 0, hours2, minutes2);
+    const differenceInMillis = date2.getTime() - date1.getTime();
+    return differenceInMillis;
   };
 
   EventTimeRepeter = () => {};
 }
-
-export function EventTimeReminder(time: string) {
-  const Now = new DateObject({
-    calendar: persian,
-    locale: persian_fa,
-    format: "HH:mm:ss",
-  }).format();
-  if (Now === time) {
-    // remind time
-  }
-}
-
-export function EventDateReminder(date: string) {
-  const Now = new DateObject({
-    calendar: persian,
-    locale: persian_fa,
-    format: "YYYY/MM/DD",
-  }).format();
-  if (Now === date) {
-    // remind date
-  }
-}
-
-export function EventTimeRepeter() {}

@@ -12,7 +12,7 @@ type T = {
 
 const initialState: T = {
   items: [{
-    date: "۱۴۰۳/۰۳/۳۰",
+    date: "۱۴۰۳/۰۳/29",
     eventTitle: "helloworld",
     id: "1",
     reminderTime: "atmoment",
@@ -22,7 +22,7 @@ const initialState: T = {
     eventTitle: "helloworld2",
     id: "2",
     reminderTime: "atmoment",
-    time: "10:01",
+    time: "15:23",
   }],
   item: {
     date: "",

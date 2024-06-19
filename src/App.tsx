@@ -9,6 +9,7 @@ import Main from "./components/Main";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import EventModal from "./components/EventModal";
+import ReminderEventModal from "./components/ReminderEventModal";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
       <Drawer />
       <EventModal />
       <Toaster />
+      <ReminderEventModal/>
     </>
   );
 }
