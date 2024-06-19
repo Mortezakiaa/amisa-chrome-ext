@@ -1,6 +1,8 @@
 import { CalendarProps, DateObject } from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
+import { TEvent } from "../Types/Types";
+import { getCurrentTime } from "./utils";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
 type selectedFormat = Pick<CalendarProps, "calendar" | "locale">;
@@ -8,18 +10,16 @@ type selectedFormat = Pick<CalendarProps, "calendar" | "locale">;
 export class EventReminder {
   #NowDate: DateObject;
   #DatePickerFormat: selectedFormat;
+  #EventList: TEvent[];
 
-  constructor(DatePickerFormat: selectedFormat) {
-    this.#NowDate = new DateObject({} as selectedFormat);
+  constructor(DatePickerFormat: selectedFormat, items: TEvent[]) {
+    this.#NowDate = new DateObject();
     this.#DatePickerFormat = DatePickerFormat;
+    this.#EventList = items;
   }
 
   EventTimeReminder = (time: string) => {
-    const Now = new DateObject({
-      calendar: persian,
-      locale: persian_fa,
-      format: "HH:mm:ss",
-    }).format();
+    const Now = getCurrentTime();
     if (Now === time) {
       // remind time
     }

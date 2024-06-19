@@ -82,8 +82,8 @@ export default class Tooltip implements TTooltip {
           });
           this.#props.className = "highlight highlight-red Closed";
           this.#props.dataClosed = i.name;
-          this.#props.arDate = arDate.format().split(" ")[0];
-          this.#props.enDate = enDate.format().split(" ")[0];
+          this.#props.arDate = arDate.format();
+          this.#props.enDate = enDate.format();
           this.#props.onMouseEnter = this.createTooltipAndShow;
           this.#props.onMouseLeave = this.removeTooltip;
           this.#props.onClick = this.addEvent;

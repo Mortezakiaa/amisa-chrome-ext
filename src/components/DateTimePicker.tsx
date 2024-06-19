@@ -25,7 +25,7 @@ export default function DateTimePicker() {
       <Calendar
         {...props}
         onPropsChange={setProps}
-        format="YYYY/MM/DD HH:mm"
+        format="YYYY/MM/DD"
         plugins={[
           <DatePickerHeader
             locale={Header.locale}

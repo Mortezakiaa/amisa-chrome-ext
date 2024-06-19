@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TodoLists } from "../Types/Types";
-import { GuidGenerator } from "../utils/GuidGenerator";
+import { GuidGenerator } from "../utils/utils";
 import {
   addTodo,
   removeTodo,

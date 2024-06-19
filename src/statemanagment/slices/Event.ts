@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IRootState } from "../store/store";
 import { TEvent } from "../../Types/Types";
-import { GuidGenerator } from "../../utils/GuidGenerator";
+import { GuidGenerator } from "../../utils/utils";
 
 type T = {
   items: TEvent[];

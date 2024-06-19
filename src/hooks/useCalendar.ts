@@ -18,7 +18,7 @@ import {
   setEventDateTime,
   setEventId,
 } from "../statemanagment/slices/Event";
-import { GuidGenerator } from "../utils/GuidGenerator";
+import { getCurrentTime, GuidGenerator } from "../utils/utils";
 import { setDateTimeFormat } from "../statemanagment/slices/globalState";
 
 export default function useCalendar(props) {
@@ -104,9 +104,10 @@ export default function useCalendar(props) {
   };
 
   const addEvent = (date: DateObject) => {
+    const nowTime = getCurrentTime();
     dispatch(setEventId(GuidGenerator()));
     const dateTime = date.format().split(" ");
-    dispatch(setEventDateTime({ date: dateTime[0], time: dateTime[1] }));
+    dispatch(setEventDateTime({ date: dateTime[0], time: nowTime }));
     dispatch(modalHandler(true));
   };
 
