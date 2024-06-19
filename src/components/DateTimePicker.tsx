@@ -11,9 +11,10 @@ import DateEvents from "./DateEvents";
 import weekends from "react-multi-date-picker/plugins/highlight_weekends";
 
 export default function DateTimePicker() {
-  const [props, setProps] = useState({
-    calendar: "persian",
-    locale: "fa",
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [props, setProps] = useState<any>({
+    calendar: persian,
+    locale: persian_fa,
     calendarPosition: "bottom-right",
     multiple: true,
   });
@@ -22,6 +23,7 @@ export default function DateTimePicker() {
   return (
     <div>
       <Calendar
+        {...props}
         onPropsChange={setProps}
         format="YYYY/MM/DD HH:mm"
         plugins={[
@@ -38,16 +40,13 @@ export default function DateTimePicker() {
             locales={["en", "fa", "ar"]}
             disabledList={["other", "mode"]}
           />,
-          <DateEvents position="left"/>,
+          <DateEvents position="left" />,
           weekends(),
         ]}
         mapDays={({ date }) => {
           const tooltip = new MainPageTooltip({ date, addEvent });
           return tooltip.props;
         }}
-        // weekDays={["ش", "ی", "د", "س", "چ", "پ", "ج"]}
-        calendar={persian}
-        locale={persian_fa}
       />
     </div>
   );

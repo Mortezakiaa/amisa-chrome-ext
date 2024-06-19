@@ -10,8 +10,10 @@ import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import EventModal from "./components/EventModal";
 
+
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const cx = JSON.parse(JSON.stringify(localStorage.getItem("bgColor")));
     dispatch(setBgColor(cx));
@@ -25,8 +27,8 @@ function App() {
         <Main />
       </div>
       <Drawer />
-      <Toaster />
       <EventModal />
+      <Toaster />
     </>
   );
 }

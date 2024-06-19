@@ -11,7 +11,19 @@ type T = {
 };
 
 const initialState: T = {
-  items: [],
+  items: [{
+    date: "۱۴۰۳/۰۳/۳۰",
+    eventTitle: "helloworld",
+    id: "1",
+    reminderTime: "atmoment",
+    time: "10:00",
+  },{
+    date: "۱۴۰۳/۰۳/۳۰",
+    eventTitle: "helloworld2",
+    id: "2",
+    reminderTime: "atmoment",
+    time: "10:01",
+  }],
   item: {
     date: "",
     eventTitle: "",

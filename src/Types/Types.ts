@@ -30,7 +30,6 @@ export interface TTodoCard {
   todo: TodoLists;
   changeStatus: (id: string, check: boolean) => void;
 }
-
 export interface TEvent {
   id: string;
   eventTitle: string;
@@ -38,7 +37,6 @@ export interface TEvent {
   time: string;
   reminderTime: string;
 }
-
 export type TReminderTime =
   | "در همان لحظه"
   | "10 دقیقه قبل"
@@ -48,20 +46,17 @@ export type TReminderTime =
   | "1 روز قبل"
   | "1 هفته قبل"
   | "مقدار دلخواه";
-
 export interface InputProps {
   placeholder: string;
   onchange: (e: ChangeEvent<HTMLInputElement>) => void;
   onkeydown?: (e: KeyboardEvent<HTMLInputElement>) => void;
   value: string;
 }
-
 export interface ButtonProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onclick: (e?: any) => void;
   txt: string;
 }
-
 export interface TTooltip {
   createTooltipAndShow: (e: React.MouseEvent<HTMLDivElement>) => void;
   removeTooltip: () => void;
