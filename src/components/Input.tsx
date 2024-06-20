@@ -13,7 +13,7 @@ export default function Input({
       onKeyDown={onkeydown}
       type="text"
       placeholder={placeholder}
-      className="p-2 rounded-lg w-full focus:outline-none border-2 border-slate-400"
+      className=" rounded-lg pr-1 w-3/5  focus:outline-none border-2 border-slate-400"
     />
   );
 }
