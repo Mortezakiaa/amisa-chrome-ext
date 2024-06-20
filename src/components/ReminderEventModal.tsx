@@ -15,14 +15,18 @@ export default function ReminderEventModal() {
   const evt = new EventReminder(DatePicker, items);
 
   useEffect(() => {
-    const now = getCurrentTime()
-    const ti = evt.todayEvents()?.map((i) => {
-      const xx =  evt.timeDiffrenceInMillis(i.time , now) 
-      console.log(xx);
+    const now = getCurrentTime();
+    const timeout = evt.todayEvents()?.map((i) => {
+      const remindTime = +Math.abs(
+        evt.timeDiffrenceInMillis(i.time, now, i.reminderTime)
+      );
+      return setTimeout(() => {
+        setEvent({ isOpen: true, title: i.eventTitle });
+      }, remindTime);
     });
 
     return () => {
-      ti.forEach((i) => clearTimeout(i));
+      timeout.forEach((i) => clearTimeout(i));
     };
   }, []);
 

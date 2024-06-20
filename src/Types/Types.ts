@@ -36,26 +36,7 @@ export interface TEvent {
   date: string;
   time: string;
   reminderTime: string;
-  delay?: number; // in milisecound
 }
-export type TReminderTime =
-  | "در همان لحظه"
-  | "10 دقیقه قبل"
-  | "30 دقیقه قبل"
-  | "1 ساعت قبل"
-  | "2 ساعت قبل"
-  | "1 روز قبل"
-  | "1 هفته قبل"
-  | "مقدار دلخواه";
-export type delaymilisecound = {
-  "در همان لحظه": 0;
-  "10 دقیقه قبل": 600000;
-  "30 دقیقه قبل": 1800000;
-  "1 ساعت قبل": 3600000;
-  "2 ساعت قبل": 7200000;
-  "1 روز قبل": 86400000;
-  "1 هفته قبل": 604800000;
-};
 export interface InputProps {
   placeholder: string;
   onchange: (e: ChangeEvent<HTMLInputElement>) => void;

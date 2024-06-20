@@ -15,10 +15,10 @@ import gregorian_ar from "react-date-object/locales/gregorian_ar";
 import { useDispatch } from "react-redux";
 import {
   modalHandler,
+  resetItem,
   setEventDateTime,
-  setEventId,
 } from "../statemanagment/slices/Event";
-import { getCurrentTime, GuidGenerator } from "../utils/utils";
+import { getCurrentTime } from "../utils/utils";
 import { setDateTimeFormat } from "../statemanagment/slices/globalState";
 
 export default function useCalendar(props) {
@@ -105,7 +105,7 @@ export default function useCalendar(props) {
 
   const addEvent = (date: DateObject) => {
     const nowTime = getCurrentTime();
-    dispatch(setEventId(GuidGenerator()));
+    dispatch(resetItem());
     const dateTime = date.format().split(" ");
     dispatch(setEventDateTime({ date: dateTime[0], time: nowTime }));
     dispatch(modalHandler(true));

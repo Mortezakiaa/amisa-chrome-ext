@@ -11,24 +11,27 @@ type T = {
 };
 
 const initialState: T = {
-  items: [{
-    date: "۱۴۰۳/۰۳/29",
-    eventTitle: "helloworld",
-    id: "1",
-    reminderTime: "atmoment",
-    time: "10:00",
-  },{
-    date: "۱۴۰۳/۰۳/۳۰",
-    eventTitle: "helloworld2",
-    id: "2",
-    reminderTime: "atmoment",
-    time: "15:23",
-  }],
+  items: [
+    {
+      date: "۱۴۰۳/۰۳/۳۱",
+      eventTitle: "first simple task",
+      id: "1",
+      reminderTime: "0",
+      time: "10:00",
+    },
+    {
+      date: "۱۴۰۳/۰۳/۳۱",
+      eventTitle: "helloworld2",
+      id: "2",
+      reminderTime: "0",
+      time: "10:30",
+    },
+  ],
   item: {
     date: "",
     eventTitle: "",
     id: "",
-    reminderTime: "atmoment",
+    reminderTime: "0",
     time: "",
   },
   isOpenModal: false,
@@ -73,9 +76,6 @@ const eventSlice = createSlice({
     setEventDate: (state, action) => {
       state.item.date = action.payload;
     },
-    setEventId: (state, action) => {
-      state.item.id = action.payload;
-    },
     setEventReminderTime: (state, action) => {
       state.item.reminderTime = action.payload;
     },
@@ -104,7 +104,6 @@ export const {
   setEventTitle,
   setEdit,
   setEventDate,
-  setEventId,
   setEventReminderTime,
   setEventTime,
   setEditMode,
