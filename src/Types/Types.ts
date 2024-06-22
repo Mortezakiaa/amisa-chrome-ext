@@ -54,3 +54,13 @@ export interface TTooltip {
   setClosedDays: (list: { name: string; day: number; month: number }[]) => void;
   addEvent: () => void;
 }
+export interface TEventReminder {
+  isEventTime: (time: string) => boolean;
+  todayEvents: () => TEvent[];
+  timeDiffrenceInMillis: (
+    time1: string,
+    time2: string,
+    reminderDelay: string
+  ) => void;
+  EventTimeRepeter: () => void;
+}

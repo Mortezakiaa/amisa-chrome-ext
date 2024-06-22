@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { EventReminder } from "../utils/EventTimeReminder";
 import { useSelector } from "react-redux";
 import { EventSelector } from "../statemanagment/slices/Event";
-import { globalStateSelector } from "../statemanagment/slices/globalState";
 import { getCurrentTime } from "../utils/utils";
+import { globalStateSelector } from "../statemanagment/slices/globalState";
 
 export default function ReminderEventModal() {
   const [event, setEvent] = useState({
