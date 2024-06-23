@@ -42,6 +42,7 @@ export default function AddEventModal() {
                 </button>
               </div>
               <div className="p-4 flex  w-full gap-2 justify-between ">
+                <div className="w-[70%] pt-4 " >
                 <Input
                   value={item.eventTitle}
                   placeholder="نوشتن رویداد"
@@ -49,7 +50,9 @@ export default function AddEventModal() {
                     dispatch(setEventTitle(e.target.value));
                   }}
                 />
-                <form className="ml-4">
+                </div>
+
+                <form className="ml-2">
                   <label className="block  text-xs font-medium text-gray-900 dark:text-white">
                     یادآوری رویداد
                   </label>
