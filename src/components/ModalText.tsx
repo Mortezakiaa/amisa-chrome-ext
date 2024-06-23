@@ -7,7 +7,7 @@ import { getCurrentTime } from "../utils/utils";
 
 export default function ReminderEventModal() {
   const [event, setEvent] = useState({
-    isOpen: true,
+    isOpen: false,
     title: "",
   });
   const { items } = useSelector(EventSelector);
