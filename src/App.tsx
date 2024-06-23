@@ -12,17 +12,11 @@ import EventModal from "./components/EventModal";
 import ReminderEventModal from "./components/ReminderEventModal";
 import axios from "axios";
 
-const url = `https://www.googleapis.com/customsearch/v1?q=dsa&key=&cx=93e9d2f7de1c6419a`;
-// const params = {
-//   client: "partner-web",
-//   hl: "en",
-//   sugexp: "csems,nrl=10",
-//   q: "dsa",
-//   callback: "google.sbox.p50",
-// };
-
+const u = `${import.meta.env.VITE_API_API}?q=digikala&${
+  import.meta.env.VITE_API_KEY
+}&cx=${import.meta.env.VITE_API_CX}`;
 axios
-  .get(url)
+  .get(u)
   .then((res) => {
     console.log(res.data);
   })
