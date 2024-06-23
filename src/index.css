@@ -30,3 +30,26 @@ body {
   border-style: solid;
   border-color: #cbd5e1 transparent transparent transparent;
 }
+
+.floating-label {
+  position: relative;
+}
+
+.floating-label input:focus ~ .label-text,
+.floating-label input:not(:placeholder-shown) ~ .label-text {
+  top: 0;
+  font-size: 12px;
+  background-color: #fff;
+  color: #4a90e2;
+}
+
+.label-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 8px;
+  font-size: 16px;
+  color: #6b7280;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
