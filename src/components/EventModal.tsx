@@ -9,8 +9,8 @@ import {
   setEventTitle,
 } from "../statemanagment/slices/Event";
 import Input from "./Input";
-import AddButton from "./AddButton";
 import DeleteButton from "./DeleteButton";
+import DefaultButton from "./DefaultButton";
 
 export default function AddEventModal() {
   const { item, eventHandler, deleteHandler } = useEvent();
@@ -70,12 +70,11 @@ export default function AddEventModal() {
                     <option value="7200000">2 ساعت قبل</option>
                     <option value="86400000">1 روز قبل</option>
                     <option value="604800000">1 هفته قبل</option>
-                    <option value="default">مقدار دلخواه</option>
                   </select>
                 </form>
               </div>
               <div className="flex gap-2 items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600 ">
-                <AddButton
+                <DefaultButton
                   onclick={eventHandler}
                   txt={editOrDeleteMode ? "ویرایش" : "اضافه کردن"}
                 />

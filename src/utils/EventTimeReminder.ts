@@ -1,34 +1,17 @@
-import { CalendarProps, DateObject } from "react-multi-date-picker";
-import type { Locale } from "react-date-object";
-import persian from "react-date-object/calendars/persian";
-import persian_fa from "react-date-object/locales/persian_fa";
-import { TEvent } from "../Types/Types";
+import { DateObject } from "react-multi-date-picker";
+import { TEvent, TEventReminder } from "../Types/Types";
 import { getCurrentTime } from "./utils";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { importCalendar, importCalendarLocale } from "./Calendar";
 
-type selectedFormat = {
-  locale: Omit<CalendarProps, "leapsLength">;
-  calendar: Locale;
-};
-
-type TEventDateReminder = {
-  date: string;
-  locale: CalendarProps;
-  calendar: CalendarProps;
-  format: string;
-};
-
-export class EventReminder {
+export class EventReminder implements TEventReminder {
   #today: string;
-  #DatePickerFormat: selectedFormat;
   #EventList: TEvent[];
 
-  constructor(DatePickerFormat: selectedFormat, items: TEvent[]) {
-    this.#DatePickerFormat = DatePickerFormat;
-    this.#today = new DateObject({
-      locale: persian_fa,
-      calendar: persian,
-    }).format();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  constructor(Format: { calendar: any; locale: any }, items: TEvent[]) {
+    const c = importCalendar(Format.calendar.name);
+    const l = importCalendarLocale(Format.locale.name);
+    this.#today = new DateObject({ locale: l, calendar: c }).format();
     this.#EventList = items;
   }
 
