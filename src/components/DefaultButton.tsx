@@ -1,6 +1,6 @@
 import { ButtonProps } from "../Types/Types";
 
-function AddButton({ onclick, txt }: ButtonProps) {
+function DefaultButton({ onclick, txt }: ButtonProps) {
   return (
     <button
       onClick={onclick}
@@ -12,4 +12,4 @@ function AddButton({ onclick, txt }: ButtonProps) {
   );
 }
 
-export default AddButton;
+export default DefaultButton;

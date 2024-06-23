@@ -8,6 +8,23 @@ import { Toaster } from "react-hot-toast";
 import EventModal from "./components/EventModal";
 import ReminderEventModal from "./components/ReminderEventModal";
 import ModalText from "./components/ModalText";
+import axios from "axios";
+
+const url = `https://www.googleapis.com/customsearch/v1?q=dsa&key=&cx=93e9d2f7de1c6419a`;
+// const params = {
+//   client: "partner-web",
+//   hl: "en",
+//   sugexp: "csems,nrl=10",
+//   q: "dsa",
+//   callback: "google.sbox.p50",
+// };
+
+
+axios.get(url).then((res)=>{
+    console.log(res.data);
+}).catch(er=>{
+    console.log(er);
+})
 
 function App() {
   const dispatch = useDispatch();
