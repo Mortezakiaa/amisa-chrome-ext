@@ -21,7 +21,7 @@ export default function TodoList() {
   } = useTodo();
   return (
     <div className="flex flex-col justify-between h-screen w-full">
-      <div className="flex flex-col gap-2 p-2">
+      <div className="flex flex-col gap-2 p-2 overflow-y-scroll">
         {todos?.map((i) => (
           <TodoCard
             changeStatus={handleStatus}

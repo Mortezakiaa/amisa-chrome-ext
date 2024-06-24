@@ -47,7 +47,7 @@ export default function ReminderEventModal() {
         }`}
       ></div>
       <div
-        className={`fixed hidden top-1/3 right-1/3 bg-white z-[1000] shadow transition-transform duration-300 ${
+        className={`fixed hidden top-[35%] right-[45%] bg-white z-[1000] shadow transition-transform duration-300 ${
           event.isOpen
             ? "transform !block translate-y-1/4"
             : "transform -translate-y-full"

@@ -9,16 +9,15 @@ import Close from "../icons/Close";
 export default function Drawer() {
   const { isDrawerOpen } = useSelector(globalStateSelector);
   const dispatch = useDispatch();
-  const toggleDrawer = () => {
-    dispatch(setOpen(!isDrawerOpen));
-  };
   return (
     <div className="flex">
       <div
         className={`fixed top-0 right-0 w-full h-full bg-black z-[1000] bg-opacity-50 transition-opacity duration-300 ${
           isDrawerOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
-        onClick={toggleDrawer}
+        onClick={() => {
+          dispatch(setOpen(!isDrawerOpen));
+        }}
       ></div>
       <div
         className={`fixed top-0 right-0 w-64 h-full bg-white z-[1000] shadow transition-transform duration-300 ${
