@@ -21,7 +21,7 @@ export default function TodoList() {
   } = useTodo();
   return (
     <div className="flex flex-col justify-between h-screen w-full">
-      <div className="flex flex-col gap-2 p-2 overflow-y-scroll">
+      <div className="flex flex-col gap-2 p-2 overflow-y-auto">
         {todos?.map((i) => (
           <TodoCard
             changeStatus={handleStatus}
@@ -63,15 +63,13 @@ export default function TodoList() {
                 const tooltip = new Tooltip(date);
                 return tooltip.props;
               }}
-              render={
-                (v, openCalendar) => (
-                  <Button
-                    mode="default"
-                    onclick={openCalendar}
-                    txt={todo.date != "" ? todo.date : "اضافه کردن تاریخ"}
-                  />
-                )
-              }
+              render={(v, openCalendar) => (
+                <Button
+                  mode="default"
+                  onclick={openCalendar}
+                  txt={todo.date != "" ? todo.date : "اضافه کردن تاریخ"}
+                />
+              )}
               weekDays={["ش", "ی", "د", "س", "چ", "پ", "ج"]}
               calendar={persian}
               locale={persian_fa}

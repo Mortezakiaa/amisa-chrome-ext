@@ -44,8 +44,7 @@ export interface InputProps {
   value: string;
 }
 export interface ButtonProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onclick?: (e?: any) => void;
+  onclick?: (e?: React.MouseEvent<HTMLElement>) => void;
   txt: string;
   mode: "default" | "delete" | "other";
 }

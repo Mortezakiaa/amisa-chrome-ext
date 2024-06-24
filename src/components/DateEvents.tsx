@@ -7,7 +7,7 @@ export default function DateEvents(_props: DatePanelProps) {
   const { items } = useSelector(EventSelector);
   return (
     <div
-      className="flex flex-col rmdp-rtl p-1 gap-2 w-[150px]"
+      className="flex flex-col rmdp-rtl p-1 gap-2 w-full min-w-[140px]"
       hidden={_props.hidden}
     >
       <h4>رویداد ها</h4>

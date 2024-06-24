@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   globalStateSelector,
@@ -9,10 +10,10 @@ import Close from "../icons/Close";
 export default function Drawer() {
   const { isDrawerOpen } = useSelector(globalStateSelector);
   const dispatch = useDispatch();
-  return (
-    <div className="flex">
+  return ReactDOM.createPortal(
+    <>
       <div
-        className={`fixed top-0 right-0 w-full h-full bg-black z-[1000] bg-opacity-50 transition-opacity duration-300 ${
+        className={`fixed top-0 right-0 left-0 bottom-0 w-screen h-full bg-black z-[1000] bg-opacity-50 transition-opacity duration-300 ${
           isDrawerOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => {
@@ -77,6 +78,7 @@ export default function Drawer() {
           </div>
         </div>
       </div>
-    </div>
+    </>,
+    document.getElementById("modal-root")!
   );
 }

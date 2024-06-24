@@ -23,7 +23,7 @@ function App() {
         <Header />
         <Main />
       </div>
-      <Drawer />
+        <Drawer />
       <ModalProviders />
     </>
   );
