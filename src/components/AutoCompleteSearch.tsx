@@ -16,8 +16,8 @@ function trailingDebounce(func: any, t: number) {
 }
 
 const AutoCompleteSearch = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [filteredOptions, setFilteredOptions] = useState([]);
+  const [inputValue, _setInputValue] = useState("");
+  const [filteredOptions, _setFilteredOptions] = useState([]);
 
   const search = async () => {
     const data = await ApiService.get(inputValue);

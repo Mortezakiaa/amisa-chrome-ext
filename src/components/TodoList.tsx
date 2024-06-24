@@ -63,7 +63,7 @@ export default function TodoList() {
                 const tooltip = new Tooltip(date);
                 return tooltip.props;
               }}
-              render={(v, openCalendar) => (
+              render={(_v, openCalendar) => (
                 <Button
                   mode="default"
                   onclick={openCalendar}
