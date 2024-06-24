@@ -62,5 +62,4 @@ export interface TEventReminder {
     time2: string,
     reminderDelay: string
   ) => void;
-  EventTimeRepeter: () => void;
 }

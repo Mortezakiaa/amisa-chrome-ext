@@ -36,6 +36,4 @@ export class EventReminder implements TEventReminder {
     const differenceInMillis = date2.getTime() - date1.getTime();
     return differenceInMillis - Number(reminderDelay);
   };
-
-  EventTimeRepeter = () => {};
 }

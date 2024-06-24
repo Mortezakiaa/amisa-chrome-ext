@@ -13,11 +13,11 @@ type T = {
 const initialState: T = {
   items: [
     {
-      date: "۱۴۰۳/۰۳/۳۱",
+      date: "۱۴۰۳/۰۴/۰۴",
       eventTitle: "first simple task",
       id: "1",
       reminderTime: "0",
-      time: "10:00",
+      time: "10:27",
     },
     {
       date: "۱۴۰۳/۰۳/۳۱",
@@ -82,6 +82,14 @@ const eventSlice = createSlice({
     setEventTime: (state, action) => {
       state.item.time = action.payload;
     },
+    remindEventLater: (state, action) => {
+      state.items = state.items.map((i) => {
+        if (i.id === action.payload) {
+          i.reminderTime = (Number(i.reminderTime) + 300000).toString();
+        }
+        return i;
+      });
+    },
     resetItem: (state) => {
       state.item = {
         date: "",
@@ -107,6 +115,7 @@ export const {
   setEventReminderTime,
   setEventTime,
   setEditMode,
+  remindEventLater,
   resetItem,
 } = eventSlice.actions;
 export const EventSelector = (store: IRootState) => store.EventReducer;

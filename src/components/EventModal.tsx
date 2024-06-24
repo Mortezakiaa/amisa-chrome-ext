@@ -41,19 +41,18 @@ export default function AddEventModal() {
                   <Close />
                 </button>
               </div>
-              <div className="p-4 flex  w-full gap-2 justify-between ">
-                <div className="w-[70%] pt-4 " >
-                <Input
-                  value={item.eventTitle}
-                  placeholder="نوشتن رویداد"
-                  onchange={(e) => {
-                    dispatch(setEventTitle(e.target.value));
-                  }}
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 p-4 gap-3">
+                <div className="col-span-1">
+                  <Input
+                    value={item.eventTitle}
+                    placeholder="نوشتن رویداد"
+                    onchange={(e) => {
+                      dispatch(setEventTitle(e.target.value));
+                    }}
+                  />
                 </div>
-
-                <form className="ml-2">
-                  <label className="block  text-xs font-medium text-gray-900 dark:text-white">
+                <form className="col-span-1 relative">
+                  <label className="absolute -top-[8px] bg-white right-[8px] text-xs font-medium text-blue-500 dark:text-white">
                     یادآوری رویداد
                   </label>
                   <select
@@ -61,7 +60,7 @@ export default function AddEventModal() {
                     onChange={(e) => {
                       dispatch(setEventReminderTime(e.target.value));
                     }}
-                    className="p-1  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    className="py-2 px-3 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   >
                     <option value="0">در همان لحظه</option>
                     <option value="600000">10 دقیقه قبل</option>

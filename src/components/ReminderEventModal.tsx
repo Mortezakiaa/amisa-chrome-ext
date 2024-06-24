@@ -1,7 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { EventReminder } from "../utils/EventTimeReminder";
-import { useSelector } from "react-redux";
-import { EventSelector } from "../statemanagment/slices/Event";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  EventSelector,
+  remindEventLater,
+  removeEvent,
+} from "../statemanagment/slices/Event";
 import { getCurrentTime } from "../utils/utils";
 import { globalStateSelector } from "../statemanagment/slices/globalState";
 
@@ -9,7 +14,9 @@ export default function ReminderEventModal() {
   const [event, setEvent] = useState({
     isOpen: false,
     title: "",
+    id: "",
   });
+  const dispatch = useDispatch();
   const { items } = useSelector(EventSelector);
   const { DatePicker } = useSelector(globalStateSelector);
   const evt = new EventReminder(DatePicker, items);
@@ -21,14 +28,14 @@ export default function ReminderEventModal() {
         evt.timeDiffrenceInMillis(i.time, now, i.reminderTime)
       );
       return setTimeout(() => {
-        setEvent({ isOpen: true, title: i.eventTitle });
+        setEvent({ isOpen: true, title: i.eventTitle, id: i.id });
       }, remindTime);
     });
 
     return () => {
       timeout.forEach((i) => clearTimeout(i));
     };
-  }, []);
+  }, [items]);
 
   return (
     <>
@@ -52,8 +59,24 @@ export default function ReminderEventModal() {
           </div>
           <div className="p-4 flex flex-col w-full gap-2 ">{event.title}</div>
           <div className="flex gap-2 items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <button>باشه فهمیدم</button>
-            <button>بعدا بگو</button>
+            <button
+              onClick={() => {
+                dispatch(removeEvent(event.id));
+                setEvent({ ...event, isOpen: false });
+              }}
+              className="border border-blue-500 text-blue-500 font-bold py-2 px-4 rounded"
+            >
+              باشه فهمیدم
+            </button>
+            <button
+              onClick={() => {
+                dispatch(remindEventLater(event.id));
+                setEvent({ ...event, isOpen: false });
+              }}
+              className="border border-green-500 text-green-500 font-bold py-2 px-4 rounded"
+            >
+              بعدا بگو
+            </button>
           </div>
         </div>
       </div>
