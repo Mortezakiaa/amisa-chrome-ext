@@ -12,7 +12,7 @@ import {
 import Input from "./Input";
 import Button from "./Button";
 
-export default function AddEventModal() {
+export default function EventModal() {
   const { item, eventHandler, deleteHandler } = useEvent();
   const dispatch = useDispatch();
   const { isOpenModal, editOrDeleteMode } = useSelector(EventSelector);

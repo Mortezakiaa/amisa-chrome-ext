@@ -7,10 +7,7 @@ import {
 } from "./statemanagment/slices/globalState";
 import Main from "./components/Main";
 import { useEffect } from "react";
-import { Toaster } from "react-hot-toast";
-import EventModal from "./components/EventModal";
-import ReminderEventModal from "./components/ReminderEventModal";
-import TodoRemindermodal from "./components/TodoRemindermodal";
+import ModalProviders from "./components/ModalProviders";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,10 +24,7 @@ function App() {
         <Main />
       </div>
       <Drawer />
-      <EventModal />
-      <Toaster />
-      <ReminderEventModal />
-      <TodoRemindermodal />
+      <ModalProviders />
     </>
   );
 }
