@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
 import { EventReminder } from "../utils/EventReminder";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +10,7 @@ import {
 } from "../statemanagment/slices/Event";
 import { getCurrentTime } from "../utils/utils";
 import { globalStateSelector } from "../statemanagment/slices/globalState";
-import DefaultButton from "./DefaultButton";
+import Button from "./Button";
 
 export default function ReminderEventModal() {
   const [event, setEvent] = useState({
@@ -38,7 +39,7 @@ export default function ReminderEventModal() {
     };
   }, [items]);
 
-  return (
+  return ReactDOM.createPortal(
     <>
       <div
         className={`fixed top-0 right-0 w-full h-full bg-black z-[1000] bg-opacity-50 transition-opacity duration-300 ${
@@ -60,25 +61,26 @@ export default function ReminderEventModal() {
           </div>
           <div className="p-4 flex flex-col w-full gap-2 ">{event.title}</div>
           <div className="flex gap-2 items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <DefaultButton
+            <Button
+              mode="default"
               txt="باشه فهمیدم"
               onclick={() => {
                 dispatch(removeEvent(event.id));
                 setEvent({ ...event, isOpen: false });
               }}
             />
-            <button
-              onClick={() => {
+            <Button
+              mode="other"
+              txt="بعدا بگو"
+              onclick={() => {
                 dispatch(remindEventLater(event.id));
                 setEvent({ ...event, isOpen: false });
               }}
-              className="border border-green-500 text-green-500 font-bold py-2 px-4 rounded"
-            >
-              بعدا بگو
-            </button>
+            />
           </div>
         </div>
       </div>
-    </>
+    </>,
+    document.getElementById("modal-root")!
   );
 }

@@ -1,3 +1,4 @@
+import ReactDOM from "react-dom";
 import Close from "../icons/Close";
 import useEvent from "../hooks/useEvent";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,14 +10,13 @@ import {
   setEventTitle,
 } from "../statemanagment/slices/Event";
 import Input from "./Input";
-import DeleteButton from "./DeleteButton";
-import DefaultButton from "./DefaultButton";
+import Button from "./Button";
 
 export default function AddEventModal() {
   const { item, eventHandler, deleteHandler } = useEvent();
   const dispatch = useDispatch();
   const { isOpenModal, editOrDeleteMode } = useSelector(EventSelector);
-  return (
+  return ReactDOM.createPortal(
     <>
       <div
         className={`${
@@ -73,12 +73,17 @@ export default function AddEventModal() {
                 </form>
               </div>
               <div className="flex gap-2 items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600 ">
-                <DefaultButton
+                <Button
+                  mode="default"
                   onclick={eventHandler}
                   txt={editOrDeleteMode ? "ویرایش" : "اضافه کردن"}
                 />
                 {editOrDeleteMode ? (
-                  <DeleteButton onclick={() => deleteHandler(item.id)} />
+                  <Button
+                    txt="حذف کردن"
+                    mode="delete"
+                    onclick={() => deleteHandler(item.id)}
+                  />
                 ) : (
                   ""
                 )}
@@ -87,6 +92,7 @@ export default function AddEventModal() {
           </div>
         </div>
       </div>
-    </>
+    </>,
+    document.getElementById("modal-root")!
   );
 }

@@ -6,6 +6,7 @@ import persian_fa from "react-date-object/locales/persian_fa";
 import Tooltip from "../utils/Tooltip";
 import weekends from "react-multi-date-picker/plugins/highlight_weekends";
 import Input from "../components/Input";
+import Button from "./Button";
 
 export default function TodoList() {
   const {
@@ -51,12 +52,7 @@ export default function TodoList() {
             />
           </div>
           <div className="w-full md:w-full flex gap-1 items-start">
-            <button
-              onClick={handleAddTask}
-              className="bg-white text-xs hover:bg-gray-100 text-gray-800 font-semibold p-1 border border-gray-400 rounded shadow"
-            >
-              اضافه کردن
-            </button>
+            <Button mode="default" txt="اضافه کردن" onclick={handleAddTask} />
             <DatePicker
               plugins={[weekends()]}
               value={todo.date}
@@ -68,9 +64,13 @@ export default function TodoList() {
                 return tooltip.props;
               }}
               render={
-                <button className="bg-white text-xs hover:bg-gray-100 text-gray-800 font-semibold p-1 border border-gray-400 rounded shadow">
-                  {todo.date != "" ? todo.date : "اضافه کردن تاریخ"}
-                </button>
+                (v, openCalendar) => (
+                  <Button
+                    mode="default"
+                    onclick={openCalendar}
+                    txt={todo.date != "" ? todo.date : "اضافه کردن تاریخ"}
+                  />
+                )
               }
               weekDays={["ش", "ی", "د", "س", "چ", "پ", "ج"]}
               calendar={persian}

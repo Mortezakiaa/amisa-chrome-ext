@@ -10,6 +10,7 @@ import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
 import EventModal from "./components/EventModal";
 import ReminderEventModal from "./components/ReminderEventModal";
+import TodoRemindermodal from "./components/TodoRemindermodal";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
       <EventModal />
       <Toaster />
       <ReminderEventModal />
+      <TodoRemindermodal />
     </>
   );
 }

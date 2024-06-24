@@ -1,12 +1,13 @@
+import ReactDOM from "react-dom";
 import { useDispatch } from "react-redux";
 import useTodo from "../hooks/useTodo";
 import { removeTodo } from "../statemanagment/slices/TodoSlice";
-import DefaultButton from "./DefaultButton";
+import Button from "./Button";
 
 export default function TodoRemindermodal() {
   const { todoReminder, setTodoReminder } = useTodo();
   const dispatch = useDispatch();
-  return (
+  return ReactDOM.createPortal(
     <>
       <div
         className={`fixed top-0 right-0 w-full h-full bg-black z-[1000] bg-opacity-50 transition-opacity duration-300 ${
@@ -30,7 +31,8 @@ export default function TodoRemindermodal() {
             {todoReminder.title}
           </div>
           <div className="flex gap-2 items-center p-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-            <DefaultButton
+            <Button
+              mode="default"
               txt="باشه فهمیدم"
               onclick={() => {
                 dispatch(removeTodo(todoReminder.id));
@@ -40,6 +42,7 @@ export default function TodoRemindermodal() {
           </div>
         </div>
       </div>
-    </>
+    </>,
+    document.getElementById("modal-root")!
   );
 }
