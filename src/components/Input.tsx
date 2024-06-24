@@ -1,11 +1,11 @@
 import { InputProps } from "../Types/Types";
 
-export default function Input({
+const Input: React.FC<InputProps> = ({
   placeholder,
   onchange,
   onkeydown,
   value,
-}: InputProps) {
+}) => {
   return (
     <div className="floating-label border border-gray-300 rounded-md w-full">
       <input
@@ -22,4 +22,5 @@ export default function Input({
       </label>
     </div>
   );
-}
+};
+export default Input;

@@ -5,7 +5,7 @@ import DisLike from "../icons/DisLike";
 import { TTodoCard } from "../Types/Types";
 import Calendar from "../icons/Calendar";
 
-export default function TodoCard({
+const TodoCard: React.FC<TTodoCard> = ({
   text,
   id,
   DeleteTodo,
@@ -13,7 +13,7 @@ export default function TodoCard({
   setToEdit,
   changeStatus,
   todo,
-}: TTodoCard) {
+}) => {
   return (
     <div className="flex flex-wrap justify-between p-1 group bg-white border border-slate-500 rounded-lg shadow hover:bg-gray-100">
       <div className="flex flex-col w-4/5">
@@ -74,4 +74,5 @@ export default function TodoCard({
       ) : null}
     </div>
   );
-}
+};
+export default TodoCard;

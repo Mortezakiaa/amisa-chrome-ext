@@ -1,6 +1,6 @@
 import { ButtonProps } from "../Types/Types";
 
-export default function Button({ onclick, txt, mode }: ButtonProps) {
+const Button: React.FC<ButtonProps> = ({ onclick, txt, mode }) => {
   return (
     <button
       onClick={onclick}
@@ -23,4 +23,6 @@ export default function Button({ onclick, txt, mode }: ButtonProps) {
       {txt}
     </button>
   );
-}
+};
+
+export default Button;

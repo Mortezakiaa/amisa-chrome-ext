@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { EventSelector } from "../statemanagment/slices/Event";
 import EventCard from "./EventCard";
 
-export default function DateEvents(_props: DatePanelProps) {
+const DateEvents: React.FC<DatePanelProps> = (_props) => {
   const { items } = useSelector(EventSelector);
   return (
     <div
@@ -16,4 +16,6 @@ export default function DateEvents(_props: DatePanelProps) {
       ))}
     </div>
   );
-}
+};
+
+export default DateEvents;

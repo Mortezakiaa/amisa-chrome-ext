@@ -6,10 +6,10 @@ import {
   setEdit,
 } from "../statemanagment/slices/Event";
 
-export default function EventCard({
+const EventCard: React.FC<Pick<TEvent, "id" | "eventTitle">> = ({
   eventTitle,
   id,
-}: Pick<TEvent, "id" | "eventTitle">) {
+}) => {
   const dispatch = useDispatch();
   const showEvent = (id: string) => {
     dispatch(setEdit(id));
@@ -38,4 +38,6 @@ export default function EventCard({
       <span className="truncate">{eventTitle}</span>
     </button>
   );
-}
+};
+
+export default EventCard;
