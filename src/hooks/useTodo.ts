@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from "react";
 import { TodoLists } from "../Types/Types";
 import { GuidGenerator } from "../utils/utils";
 import {
@@ -11,6 +12,9 @@ import {
 } from "../statemanagment/slices/TodoSlice";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import { DateObject } from "react-multi-date-picker";
+import { globalStateSelector } from "../statemanagment/slices/globalState";
+import { importCalendar, importCalendarLocale } from "../utils/Calendar";
 
 export default function useTodo() {
   const [todo, setTodo] = useState<TodoLists>({
@@ -20,8 +24,33 @@ export default function useTodo() {
     date: "",
     deleteMode: false,
   });
+  const [todoReminder, setTodoReminder] = useState({
+    isOpen: false,
+    title: "",
+    id: "",
+  });
   const dispatch = useDispatch();
   const { todos } = useSelector(TodoSelector);
+  const {
+    DatePicker: { calendar, locale },
+  } = useSelector(globalStateSelector);
+  const cl = importCalendar(calendar.name);
+  const lo = importCalendarLocale(locale.name);
+
+  useEffect(() => {
+    const timeout = todos?.map((i) => {
+      const today = new DateObject({ calendar: cl, locale: lo }).format();
+      if (i.date === today && i.status === "Todo") {
+        return setTimeout(() => {
+          setTodoReminder({ isOpen: true, id: i.id, title: i.todo });
+        }, 0);
+      }
+    });
+
+    return () => {
+      timeout.forEach((i) => clearTimeout(i));
+    };
+  }, [todos]);
 
   const handleAddTask = () => {
     if (todo.todo == "") {
@@ -64,5 +93,7 @@ export default function useTodo() {
     handleEdit,
     setToEdit,
     handleStatus,
+    todoReminder,
+    setTodoReminder,
   };
 }

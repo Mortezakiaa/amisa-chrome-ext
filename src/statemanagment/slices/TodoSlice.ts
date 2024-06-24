@@ -5,7 +5,15 @@ import { IRootState } from "../store/store";
 type T = { todos: TodoLists[] };
 
 const initialState: T = {
-  todos: [],
+  todos: [
+    {
+      date:"۱۴۰۳/۰۴/۰۴",
+      deleteMode:false,
+      id:'12',
+      status:"Todo",
+      todo:'todooooooooooooooooooooo'
+    }
+  ],
 };
 
 const todoSlice = createSlice({

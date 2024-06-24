@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DateObject } from "react-multi-date-picker";
 import { TEvent, TEventReminder } from "../Types/Types";
 import { getCurrentTime } from "./utils";
@@ -7,7 +8,6 @@ export class EventReminder implements TEventReminder {
   #today: string;
   #EventList: TEvent[];
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(Format: { calendar: any; locale: any }, items: TEvent[]) {
     const c = importCalendar(Format.calendar.name);
     const l = importCalendarLocale(Format.locale.name);
