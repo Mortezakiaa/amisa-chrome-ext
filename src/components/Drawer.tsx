@@ -40,12 +40,6 @@ export default function Drawer() {
           <p className="text-gray-300">پس زمینه مد نظر خودتو بزار</p>
           <div className="flex items-center flex-wrap gap-1 mt-1">
             <button
-              className="rounded-full bg-[#cbd5e1] p-3"
-              onClick={() => {
-                dispatch(setBgColor("#cbd5e1"));
-              }}
-            ></button>
-            <button
               className="rounded-full bg-[#fca5a5] p-3"
               onClick={() => {
                 dispatch(setBgColor("#fca5a5"));

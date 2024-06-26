@@ -19,7 +19,7 @@ function App() {
   const { color } = useSelector(globalStateSelector);
   return (
     <>
-      <div className={`py-4 w-full px-10 bg-[${color}]`}>
+      <div className={`py-4 w-full h-full px-10 bg-[${color}]`}>
         <Header />
         <Main />
       </div>

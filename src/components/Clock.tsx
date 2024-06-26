@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
 export default function Clock() {
@@ -8,15 +9,14 @@ export default function Clock() {
     const now = new Date();
     const h = checkTime(now.getHours());
     const m = checkTime(now.getMinutes());
-    const s = checkTime(now.getSeconds());
-    return `${h}:${m}:${s}`;
+    return `${h}:${m}`;
   };
   const [time, setTime] = useState(getTime());
 
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(getTime());
-    }, 1000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 

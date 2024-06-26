@@ -23,6 +23,7 @@ export default function DateTimePicker() {
   return (
     <div>
       <Calendar
+        className="w-full"
         {...props}
         onPropsChange={setProps}
         format="YYYY/MM/DD"

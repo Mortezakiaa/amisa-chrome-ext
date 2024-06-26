@@ -4,7 +4,7 @@ import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
 
 const initialState = {
-  color: "#fff",
+  color: "#7dd3fc",
   DatePicker: { locale: persian, calendar: persian_fa },
   isDrawerOpen: false,
 };

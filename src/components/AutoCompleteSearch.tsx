@@ -25,7 +25,7 @@ const AutoCompleteSearch = () => {
   };
 
   return (
-    <div className="relative w-full max-w-md mx-auto">
+    <div className="relative w-full">
       <Input
         value={inputValue}
         onchange={trailingDebounce(search, 800)}
