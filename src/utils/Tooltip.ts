@@ -32,8 +32,9 @@ export default class Tooltip implements TTooltip {
     }
   }
 
-  private createTooltipAndShow = (e: React.MouseEvent<HTMLDivElement>) => {
+  createTooltipAndShow = (e: React.MouseEvent<HTMLDivElement>) => {
     const ev = e.target as HTMLElement;
+    if(!ev) throw new Error('method not correctly implemented!!!')
     const txt = ev.getAttribute("dataClosed") as string;
     const arDate = ev.getAttribute("ardate") as string;
     const enDate = ev.getAttribute("endate") as string;
@@ -60,13 +61,11 @@ export default class Tooltip implements TTooltip {
     container.role = "dateTooltip";
   };
 
-  protected removeTooltip = () => {
-    document.querySelectorAll("[role=dateTooltip]")?.forEach((i) => i.remove());
+  removeTooltip = () => {
+    document?.querySelectorAll("[role=dateTooltip]")?.forEach((i) => i.remove());
   };
 
-  private setClosedDays = (
-    list: { name: string; day: number; month: number }[]
-  ) => {
+  setClosedDays = (list: { name: string; day: number; month: number }[]) => {
     list?.forEach((i: ClosedDayOfYear) => {
       if (i.month == this.#date.month.number) {
         if (i.day == this.#date.day) {
@@ -92,7 +91,7 @@ export default class Tooltip implements TTooltip {
     });
   };
 
-  private addEvent = () => {
+  addEvent = () => {
     this.removeTooltip();
   };
 }
