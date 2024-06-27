@@ -12,14 +12,16 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "esModuleInterop": true,
     "jsx": "react-jsx",
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["vite/client", "jest", "react", "react-dom", "@types/jest"]
   },
-  "include": ["src"],
+  "include": ["src", "setupTest.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
