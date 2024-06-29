@@ -20,8 +20,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "types": ["vite/client", "jest", "react", "react-dom", "@types/jest"]
+    "types": ["vite/client"]
   },
-  "include": ["src", "setupTest.ts"],
+  "include": ["src", ".src/setupTests.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
